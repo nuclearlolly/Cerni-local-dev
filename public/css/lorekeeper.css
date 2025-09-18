@@ -195,10 +195,11 @@ main > .row {
 		margin-left: 1rem!important;
 		margin-right: 1rem!important;
 	}
-    .dark-input, .dark-input:focus, .dark-input.active {
+    .dark-input, .dark-input:focus, .dark-input.active, #ajaxsearch {
         min-width: 100%;
     }
     #searchResult {
+        min-width: 100%;
         width: 100%;
         max-height: 50vh;
     }
