@@ -19,6 +19,7 @@ return [
             'Cylunny' => 'https://toyhou.se/cylunny',
         ]),
         'version' => '1.0.0', 
+            ],
     'dailies' => [
         'key' => 'dailies',
         'wiki_key' => 'Dailies',
@@ -26,5 +27,6 @@ return [
             'Cylunny' => 'https://toyhou.se/cylunny',
         ]),
         'version' => '2.0.1', 
+    ],
 
 ]
