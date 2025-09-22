@@ -26,6 +26,5 @@ return [
             'Cylunny' => 'https://toyhou.se/cylunny',
         ]),
         'version' => '2.0.1', 
-    ],
 
 ]
