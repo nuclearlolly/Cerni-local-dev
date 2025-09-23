@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gallery\GallerySubmission;
+use App\Models\SitePage;
+use App\Services\LinkService;
+use App\Services\UserService;
 use Auth;
 use DB;
 use Config;
@@ -19,7 +23,8 @@ use App\Models\Character\Character;
 use App\Services\LinkService;
 use App\Services\DeviantArtService;
 use App\Services\UserService;
-class HomeController extends Controller{
+class HomeController extends Controller
+{
     /*
     |--------------------------------------------------------------------------
     | Home Controller
@@ -46,7 +51,7 @@ class HomeController extends Controller{
             'about'               => SitePage::where('key', 'about')->first(),
             'gallerySubmissions'  => $gallerySubmissions,
             ]);
-   
+
         if(Settings::get('featured_character')) {
             $character = Character::find(Settings::get('featured_character'));
         }
@@ -56,6 +61,7 @@ class HomeController extends Controller{
             'featured' => $character,
         ]);
     }
+}
 
     /**
      * Shows the account linking page.
