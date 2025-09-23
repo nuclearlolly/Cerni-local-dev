@@ -329,15 +329,15 @@ main > .row {
 	position: relative;
 }
 .dark-input {
-	background-color: color-mix(in oklab, var(--dark) 100%, #fff 10%);
+	background-color: color-mix(in oklab, #27086F 100%, #fff 10%);
 	outline: none;
 	box-shadow: none;
 	border: 0;
 	padding: 6px 15px;
-	min-width: 180px;
+	min-width: 90px;
 	border-radius: 15px;
 	color: var(--text);
-	transition: 250ms all;
+	transition: 200ms all;
 }
 .search-bar:after {
 	content: "\f002";
@@ -355,7 +355,7 @@ main > .row {
 	filter: brightness(1.5);
 }
 .dark-input:focus, .dark-input.active {
-	min-width: 250px;
+	min-width: 200px;
 }
 /*Search Dropdown*/
 #searchResult {

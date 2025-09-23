@@ -24,81 +24,48 @@
                         <a class="nav-link" href="{{ url('sales') }}">Sales</a>
                     @endif
                 </li>
+                                <li class="nav-item">
+                    @if (Auth::check() && Auth::user()->is_raffles_unread && config('lorekeeper.extensions.navbar_news_notif'))
+                        <a class="nav-link d-flex text-warning" href="{{ url('raffles') }}"><strong>Raffles</strong><i class="fas fa-bell"></i></a>
+                    @else
+                        <a class="nav-link" href="{{ url('raffles') }}">Raffles</a>
+                    @endif
+                </li>
                 @if (Auth::check())
                     <li class="nav-item dropdown">
                         <a id="inventoryDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            Home
+                            Resources
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="inventoryDropdown">
-                            <a class="dropdown-item" href="{{ url('characters') }}">
-                                My Characters
-                            </a>
-                            <a class="dropdown-item" href="{{ url('characters/myos') }}">
-                                My MYO Slots
-                            </a>
-                            <a class="dropdown-item" href="{{ url('inventory') }}">
-                                Inventory
-                            </a>
-                            <a class="dropdown-item" href="{{ url('bank') }}">
-                                Bank
+                            <a class="dropdown-item" href="{{ url('info/Rules') }}">
+                                Rules
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ url('comments/liked') }}">
-                                Liked Comments
-                            </a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a id="queueDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            Activity
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="queueDropdown">
-                            <a class="dropdown-item" href="{{ url('submissions') }}">
-                                Prompt Submissions
-                            </a>
-                            <a class="dropdown-item" href="{{ url('claims') }}">
-                                Claims
-                            </a>
-                            <a class="dropdown-item" href="{{ url('reports') }}">
-                                Reports
-                            </a>
-                            <a class="dropdown-item" href="{{ url('designs') }}">
-                                Design Approvals
+                            <a class="dropdown-item" href="{{ url('info/Newbie') }}">
+                                Newbie Guide
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ url('characters/transfers/incoming') }}">
-                                Character Transfers
-                            </a>
-                            <a class="dropdown-item" href="{{ url('trades/open') }}">
-                                Trades
+                            <a class="dropdown-item" href="{{ url('world') }}">
+                                Encyclopedia
                             </a>
                         </div>
                     </li>
                 @endif
                 <li class="nav-item dropdown">
                     <a id="browseDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        Browse
+                        Masterlists
                     </a>
 
                     <div class="dropdown-menu" aria-labelledby="browseDropdown">
                         <a class="dropdown-item" href="{{ url('users') }}">
                             Users
                         </a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ url('masterlist') }}">
-                            Character Masterlist
-                        </a>
-                        <a class="dropdown-item" href="{{ url('myos') }}">
-                            MYO Slot Masterlist
+                            Cerni
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ url('raffles') }}">
-                            Raffles
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ url('reports/bug-reports') }}">
-                            Bug Reports
-                        </a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -107,9 +74,6 @@
                     </a>
 
                     <div class="dropdown-menu" aria-labelledby="loreDropdown">
-                        <a class="dropdown-item" href="{{ url('world') }}">
-                            Encyclopedia
-                        </a>
                         <a class="dropdown-item" href="{{ url('prompts/prompts') }}">
                             Prompts
                         </a>
@@ -119,10 +83,10 @@
                         <a class="dropdown-item" href="{{ url(__('dailies.dailies')) }}">
                         {{__('dailies.dailies')}}
                         </a>
+                        <a class="dropdown-item" href="{{ url('gallery') }}">
+                            Gallery
+                        </a>
                     </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('gallery') }}">Gallery</a>
                 </li>
             </ul>
 
