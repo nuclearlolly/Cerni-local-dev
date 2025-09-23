@@ -44,11 +44,11 @@ class HomeController extends Controller {
             'about'               => SitePage::where('key', 'about')->first(),
             'gallerySubmissions'  => $gallerySubmissions,
             ]);
-    public function getIndex() {
         if(Settings::get('featured_character')) {
             $character = Character::find(Settings::get('featured_character'));
+        } else {
+            $character = null;
         }
-        else $character = null;
         return view('welcome', [
             'about' => SitePage::where('key', 'about')->first(),
             'featured' => $character,
