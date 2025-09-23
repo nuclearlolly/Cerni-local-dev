@@ -61,7 +61,6 @@ class HomeController extends Controller
             'featured' => $character,
         ]);
     }
-}
 
     /**
      * Shows the account linking page.
