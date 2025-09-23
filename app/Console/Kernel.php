@@ -34,7 +34,7 @@ class Kernel extends ConsoleKernel {
         $schedule->command('index-new-search-pages')
             ->daily();
         $schedule->command('change-feature')
-            ->monthly();
+            ->everyMinute();
     }
 
     /**
