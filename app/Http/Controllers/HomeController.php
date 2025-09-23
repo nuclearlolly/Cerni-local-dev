@@ -6,8 +6,6 @@ use App\Models\Gallery\GallerySubmission;
 use App\Models\SitePage;
 use App\Services\LinkService;
 use App\Services\UserService;
-use Auth;
-use DB;
 use Config;
 use Carbon\Carbon;
 use Settings;
