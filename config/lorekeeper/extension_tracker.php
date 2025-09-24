@@ -29,4 +29,13 @@ return [
         'version' => '2.0.1', 
     ],
 
+    'Character_Transformations' => [
+        'key' => 'character_transformations',
+            'wiki_key' => 'Character_Transformations',
+            'creators' => json_encode([
+                'CH3RVB' => 'https://github.com/CH3RVB/',
+                'Newt' => 'https://github.com/Ne-wt',
+            ]),
+            'version' => '1.0.0',
+        ],
 ];
