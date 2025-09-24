@@ -183,7 +183,6 @@ class CharacterManager extends Service {
 
         return $this->rollbackReturn(false);
     }
-}
 
     /**
      * Handles character data.
@@ -2516,4 +2515,5 @@ class CharacterManager extends Service {
 
         return $result;
     }
+}
 }
