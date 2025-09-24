@@ -35,6 +35,18 @@ class HomeController extends Controller
      */
     public function getIndex() 
     {
+        if (config('lorekeeper.extensions.show_all_recent_submissions.enable')) {
+            $query = GallerySubmission::visible(Auth::check() ? Auth::user() : null)->accepted()->orderBy('created_at', 'DESC');
+            $gallerySubmissions = $query->get()->take(8);
+        } else {
+            $gallerySubmissions = [];
+        }
+
+        return view('welcome', [
+            'about'               => SitePage::where('key', 'about')->first(),
+            'gallerySubmissions'  => $gallerySubmissions,
+            ]);
+
         if(Settings::get('featured_character')) {
             $character = Character::find(Settings::get('featured_character'));
         }
