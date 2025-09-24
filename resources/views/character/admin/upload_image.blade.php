@@ -24,9 +24,12 @@
 
     <div class="form-group">
         {!! Form::label('Character Image') !!} {!! add_help('This is the full masterlist image. Note that the image is not protected in any way, so take precautions to avoid art/design theft.') !!}
-        <div>{!! Form::file('image', ['id' => 'mainImage']) !!}</div>
+        <div class="custom-file">
+            {!! Form::label('image', 'Choose file...', ['class' => 'custom-file-label']) !!}
+            {!! Form::file('image', ['class' => 'custom-file-input', 'id' => 'mainImage']) !!}
+        </div>
     </div>
-    @if (Config::get('lorekeeper.settings.masterlist_image_automation') === 1)
+    @if (config('lorekeeper.settings.masterlist_image_automation') === 1)
         <div class="form-group">
             {!! Form::checkbox('use_cropper', 1, 1, ['class' => 'form-check-input', 'data-toggle' => 'toggle', 'id' => 'useCropper']) !!}
             {!! Form::label('use_cropper', 'Use Thumbnail Automation', ['class' => 'form-check-label ml-3']) !!} {!! add_help('A thumbnail is required for the upload (used for the masterlist). You can use the Thumbnail Automation, or upload a custom thumbnail.') !!}
@@ -59,8 +62,11 @@
     <div class="card mb-3" id="thumbnailUpload">
         <div class="card-body">
             {!! Form::label('Thumbnail Image') !!} {!! add_help('This image is shown on the masterlist page.') !!}
-            <div>{!! Form::file('thumbnail') !!}</div>
-            <div class="text-muted">Recommended size: {{ Config::get('lorekeeper.settings.masterlist_thumbnails.width') }}px x {{ Config::get('lorekeeper.settings.masterlist_thumbnails.height') }}px</div>
+            <div class="custom-file">
+                {!! Form::label('thumbnail', 'Choose thumbnail...', ['class' => 'custom-file-label']) !!}
+                {!! Form::file('thumbnail', ['class' => 'custom-file-input']) !!}
+            </div>
+            <div class="text-muted">Recommended size: {{ config('lorekeeper.settings.masterlist_thumbnails.width') }}px x {{ config('lorekeeper.settings.masterlist_thumbnails.height') }}px</div>
         </div>
     </div>
     <p class="alert alert-info">
@@ -117,22 +123,6 @@
         {!! Form::select('subtype_id', $subtypes, old('subtype_id') ?: $character->image->subtype_id, ['class' => 'form-control', 'id' => 'subtype']) !!}
     </div>
 
-    <hr>
-    <h5>{{ ucfirst(__('transformations.transformations')) }}</h5>
-    <div class="form-group" id="transformations">
-        {!! Form::label(ucfirst(__('transformations.transformation')) . ' (Optional)') !!}
-        {!! Form::select('transformation_id', $transformations, null, ['class' => 'form-control', 'id' => 'transformation']) !!}
-    </div>
-    <div class="form-group">
-        {!! Form::label(ucfirst(__('transformations.transformation')) . ' Tab Info (Optional)') !!}{!! add_help('This is text that will show alongside the ' . __('transformations.transformation') . ' name in the tabs, so try to keep it short.') !!}
-        {!! Form::text('transformation_info', old('transformation_info') ?: $character->image->transformation_info, ['class' => 'form-control mr-2', 'placeholder' => 'Tab Info (Optional)']) !!}
-    </div>
-    <div class="form-group">
-        {!! Form::label(ucfirst(__('transformations.transformation')) . ' Origin/Lore (Optional)') !!}{!! add_help('This is text that will show alongside the ' . __('transformations.transformation') . ' name on the image info area. Explains why the character takes this form, how, etc. Should be pretty short.') !!}
-        {!! Form::text('transformation_description', old('transformation_description') ?: $character->image->transformation_description, ['class' => 'form-control mr-2', 'placeholder' => 'Origin Info (Optional)']) !!}
-    </div>
-    <hr>
-
     <div class="form-group">
         {!! Form::label('Character Rarity') !!}
         {!! Form::select('rarity_id', $rarities, old('rarity_id') ?: $character->image->rarity_id, ['class' => 'form-control']) !!}
@@ -140,9 +130,18 @@
 
     <div class="form-group">
         {!! Form::label('Traits') !!}
+        <div><a href="#" class="btn btn-primary mb-2" id="add-feature">Add Trait</a></div>
         <div id="featureList">
+            @if (config('lorekeeper.extensions.autopopulate_image_features'))
+                @foreach ($character->image->features as $feature)
+                    <div class="d-flex mb-2">
+                        {!! Form::select('feature_id[]', $features, $feature->feature_id, ['class' => 'form-control mr-2 feature-select original', 'placeholder' => 'Select Trait']) !!}
+                        {!! Form::text('feature_data[]', $feature->data, ['class' => 'form-control mr-2', 'placeholder' => 'Extra Info (Optional)']) !!}
+                        <a href="#" class="remove-feature btn btn-danger mb-2">×</a>
+                    </div>
+                @endforeach
+            @endif
         </div>
-        <div><a href="#" class="btn btn-primary" id="add-feature">Add Trait</a></div>
         <div class="feature-row hide mb-2">
             {!! Form::select('feature_id[]', $features, null, ['class' => 'form-control mr-2 feature-select', 'placeholder' => 'Select Trait']) !!}
             {!! Form::text('feature_data[]', null, ['class' => 'form-control mr-2', 'placeholder' => 'Extra Info (Optional)']) !!}
@@ -154,6 +153,7 @@
         {!! Form::submit('Create Image', ['class' => 'btn btn-primary']) !!}
     </div>
     {!! Form::close() !!}
+
 @endsection
 
 @section('scripts')
@@ -250,17 +250,29 @@
                     e.preventDefault();
                     removeFeatureRow($(this));
                 })
-                $clone.find('.feature-select').selectize();
+                @if (config('lorekeeper.extensions.organised_traits_dropdown'))
+                    $clone.find('.feature-select').selectize({
+                        render: {
+                            item: featureSelectedRender
+                        }
+                    });
+                @else
+                    $clone.find('.feature-select').selectize();
+                @endif
             }
 
             function removeFeatureRow($trigger) {
                 $trigger.parent().remove();
             }
 
+            function featureSelectedRender(item, escape) {
+                return '<div><span>' + escape(item["text"].trim()) + ' (' + escape(item["optgroup"].trim()) + ')' + '</span></div>';
+            }
+
             // Croppie ////////////////////////////////////////////////////////////////////////////////////
 
-            var thumbnailWidth = {{ Config::get('lorekeeper.settings.masterlist_thumbnails.width') }};
-            var thumbnailHeight = {{ Config::get('lorekeeper.settings.masterlist_thumbnails.height') }};
+            var thumbnailWidth = {{ config('lorekeeper.settings.masterlist_thumbnails.width') }};
+            var thumbnailHeight = {{ config('lorekeeper.settings.masterlist_thumbnails.height') }};
             var $cropper = $('#cropper');
             var c = null;
             var $x0 = $('#cropX0');
@@ -321,15 +333,6 @@
                 dataType: "text"
             }).done(function(res) {
                 $("#subtypes").html(res);
-            }).fail(function(jqXHR, textStatus, errorThrown) {
-                alert("AJAX call failed: " + textStatus + ", " + errorThrown);
-            });
-            $.ajax({
-                type: "GET",
-                url: "{{ url('admin/character/image/transformation') }}?species=" + species + "&id=" + id,
-                dataType: "text"
-            }).done(function(res) {
-                $("#transformations").html(res);
             }).fail(function(jqXHR, textStatus, errorThrown) {
                 alert("AJAX call failed: " + textStatus + ", " + errorThrown);
             });

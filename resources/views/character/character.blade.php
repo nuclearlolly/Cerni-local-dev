@@ -20,52 +20,18 @@
 
     @include('character._header', ['character' => $character])
 
-@if ($character->images()->where('is_valid', 1)->whereNotNull('transformation_id')->exists())
-        <div class="card-header mb-2">
-            <ul class="nav nav-tabs card-header-tabs">
-                @foreach ($character->images()->where('is_valid', 1)->get() as $image)
-                    <li class="nav-item">
-                        <a class="nav-link form-data-button {{ $image->id == $character->image->id ? 'active' : '' }}" data-toggle="tab" role="tab" data-id="{{ $image->id }}">
-                            {{ $image->transformation_id ? $image->transformation->name : 'Main' }} {{ $image->transformation_info ? ' ('.$image->transformation_info.')' : '' }}
-                        </a>
-                    </li>
-                @endforeach
-                <li>
-                    <h3>{!! add_help('Click on a '.__('transformations.transformation').' to view the image. If you don\'t see the '.__('transformations.transformation').' you\'re looking for, it may not have been uploaded yet.') !!}</h3>
-                </li>
-            </ul>
-        </div>
-@endif
-
-{{-- Main Image --}}
-<div class="row mb-3" id="main-tab">
-    <div class="col-md-7">
-        <div class="text-center">
-            <a href="{{ $character->image->canViewFull(Auth::check() ? Auth::user() : null) && file_exists( public_path($character->image->imageDirectory.'/'.$character->image->fullsizeFileName)) ? $character->image->fullsizeUrl : $character->image->imageUrl }}" data-lightbox="entry" data-title="{{ $character->fullName }}">
-                <img src="{{ $character->image->canViewFull(Auth::check() ? Auth::user() : null) && file_exists( public_path($character->image->imageDirectory.'/'.$character->image->fullsizeFileName)) ? $character->image->fullsizeUrl : $character->image->imageUrl }}" class="image" alt="{{ $character->fullName }}" />
-            </a>
-        </div>
-        @if($character->image->canViewFull(Auth::check() ? Auth::user() : null) && file_exists( public_path($character->image->imageDirectory.'/'.$character->image->fullsizeFileName)))
-            <div class="text-right">You are viewing the full-size image. <a href="{{ $character->image->imageUrl }}">View watermarked image</a>?</div>
-        @endif
-    </div>
-    @include('character._image_info', ['image' => $character->image])
-</div>
-
-{{-- Info --}}
-<div class="card character-bio">
-    <div class="card-header">
-        <ul class="nav nav-tabs card-header-tabs">
-            <li class="nav-item">
-                <a class="nav-link active" id="statsTab" data-toggle="tab" href="#stats" role="tab">Stats</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="notesTab" data-toggle="tab" href="#notes" role="tab">Description</a>
-            </li>
-            @if(Auth::check() && Auth::user()->hasPower('manage_characters'))
-                <li class="nav-item">
-                    <a class="nav-link" id="settingsTab" data-toggle="tab" href="#settings-{{ $character->slug }}" role="tab"><i class="fas fa-cog"></i></a>
-                </li>
+    {{-- Main Image --}}
+    <div class="row mb-3">
+        <div class="col-md-7">
+            <div class="text-center">
+                <a href="{{ $character->image->canViewFull(Auth::check() ? Auth::user() : null) && file_exists(public_path($character->image->imageDirectory . '/' . $character->image->fullsizeFileName)) ? $character->image->fullsizeUrl : $character->image->imageUrl }}"
+                    data-lightbox="entry" data-title="{{ $character->fullName }}">
+                    <img src="{{ $character->image->canViewFull(Auth::check() ? Auth::user() : null) && file_exists(public_path($character->image->imageDirectory . '/' . $character->image->fullsizeFileName)) ? $character->image->fullsizeUrl : $character->image->imageUrl }}"
+                        class="image" alt="{{ $character->fullName }}" />
+                </a>
+            </div>
+            @if ($character->image->canViewFull(Auth::check() ? Auth::user() : null) && file_exists(public_path($character->image->imageDirectory . '/' . $character->image->fullsizeFileName)))
+                <div class="text-right">You are viewing the full-size image. <a href="{{ $character->image->imageUrl }}">View watermarked image</a>?</div>
             @endif
         </div>
         @include('character._image_info', ['image' => $character->image])
@@ -119,5 +85,4 @@
 @section('scripts')
     @parent
     @include('character._image_js', ['character' => $character])
-    @include('character._transformation_js')
 @endsection
