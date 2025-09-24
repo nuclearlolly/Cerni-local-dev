@@ -41,12 +41,6 @@ class HomeController extends Controller
         } else {
             $gallerySubmissions = [];
         }
-
-        return view('welcome', [
-            'about'               => SitePage::where('key', 'about')->first(),
-            'gallerySubmissions'  => $gallerySubmissions,
-            ]);
-
         if(Settings::get('featured_character')) {
             $character = Character::find(Settings::get('featured_character'));
         }
@@ -54,7 +48,8 @@ class HomeController extends Controller
         return view('welcome', [
             'about' => SitePage::where('key', 'about')->first(),
             'featured' => $character,
-        ]);
+            'gallerySubmissions'  => $gallerySubmissions,
+            ]);
     }
 
     /**
