@@ -6,6 +6,7 @@
 </div>
 
 @include('widgets._news', ['textPreview' => true])
+@include('widgets._sales')
 
 <div class="row">
     <div class="col-md-6">

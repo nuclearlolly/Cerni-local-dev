@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sales\Sales;
 use Auth;
 use DB;
 use Config;
@@ -51,7 +52,8 @@ class HomeController extends Controller
             'about' => SitePage::where('key', 'about')->first(),
             'featured' => $character,
             'gallerySubmissions'  => $gallerySubmissions,
-            'newses'              => News::visible()->orderBy('updated_at', 'DESC')->take(2)->get(),
+            'newses'              => News::visible()->orderBy('updated_at', 'DESC')->take(1)->get(),
+            'saleses' => Sales::visible()->orderBy('id', 'DESC')->take(1)->get(),
         ]);
     }
 
