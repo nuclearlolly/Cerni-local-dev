@@ -245,7 +245,7 @@ Route::group(['prefix' => 'data', 'namespace' => 'Data', 'middleware' => 'power:
     Route::post('prompts/edit/{id?}', 'PromptController@postCreateEditPrompt');
     Route::post('prompts/delete/{id}', 'PromptController@postDeletePrompt');
     
-    # DAILIES
+    // DAILIES
     Route::get('dailies', 'DailyController@getIndex');
     Route::get('dailies/create', 'DailyController@getCreateDaily');
     Route::get('dailies/edit/{id}', 'DailyController@getEditDaily');
@@ -254,6 +254,15 @@ Route::group(['prefix' => 'data', 'namespace' => 'Data', 'middleware' => 'power:
     Route::post('dailies/edit/{id?}', 'DailyController@postCreateEditDaily');
     Route::post('dailies/delete/{id}', 'DailyController@postDeleteDaily');
     Route::post('dailies/sort', 'DailyController@postSortDaily'); 
+
+    // Carousel
+    Route::get('carousel', 'CarouselController@getIndex');
+    Route::post('carousel/create', 'CarouselController@postUploadCarousel');
+    Route::get('carousel/delete/{id}', 'CarouselController@getDeleteCarousel');
+    Route::post('carousel/delete/{id}', 'CarouselController@postDeleteCarousel');
+    Route::post('carousel/sort', 'CarouselController@postSortCarousel');
+    Route::get('carousel/edit/{id}', 'CarouselController@getEditCarousel');
+    Route::post('carousel/edit/{id}', 'CarouselController@postEditCarousel');
 });
 
 // PAGES
