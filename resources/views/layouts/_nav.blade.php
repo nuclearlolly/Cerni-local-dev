@@ -11,25 +11,29 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    @if (Auth::check() && Auth::user()->is_news_unread && config('lorekeeper.extensions.navbar_news_notif'))
+                    @if (Auth::check() && Auth::user()->is_news_unread && Config::get('lorekeeper.extensions.navbar_news_notif'))
                         <a class="nav-link d-flex text-warning" href="{{ url('news') }}"><strong>News</strong><i class="fas fa-bell"></i></a>
                     @else
                         <a class="nav-link" href="{{ url('news') }}">News</a>
                     @endif
                 </li>
                 <li class="nav-item">
-                    @if (Auth::check() && Auth::user()->is_sales_unread && config('lorekeeper.extensions.navbar_news_notif'))
+                    @if (Auth::check() && Auth::user()->is_sales_unread && Config::get('lorekeeper.extensions.navbar_news_notif'))
                         <a class="nav-link d-flex text-warning" href="{{ url('sales') }}"><strong>Sales</strong><i class="fas fa-bell"></i></a>
                     @else
                         <a class="nav-link" href="{{ url('sales') }}">Sales</a>
                     @endif
                 </li>
-                                <li class="nav-item">
-                    @if (Auth::check() && Auth::user()->is_raffles_unread && config('lorekeeper.extensions.navbar_news_notif'))
-                        <a class="nav-link d-flex text-warning" href="{{ url('raffles') }}"><strong>Raffles</strong><i class="fas fa-bell"></i></a>
-                    @else
-                        <a class="nav-link" href="{{ url('raffles') }}">Raffles</a>
-                    @endif
+                <li class="nav-item">
+                        @if (Auth::check() && Auth::user()->is_raffles_unread && config('lorekeeper.extensions.navbar_news_notif'))
+                            <a class="nav-link d-flex text-warning" href="{{ url('raffles') }}">
+                                Raffles <i class="fas fa-bell"></i>
+                            </a>
+                        @else
+                            <a class="nav-link" href="{{ url('raffles') }}">
+                                Raffles
+                            </a>
+                        @endif
                 </li>
                 @if (Auth::check())
                     <li class="nav-item dropdown">
