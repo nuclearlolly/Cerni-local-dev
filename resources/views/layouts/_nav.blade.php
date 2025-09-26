@@ -45,7 +45,6 @@
                             <a class="dropdown-item" href="{{ url('info/Newbie') }}">
                                 Newbie Guide
                             </a>
-                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ url('world') }}">
                                 Encyclopedia
                             </a>
@@ -53,39 +52,73 @@
                     </li>
                 @endif
                 <li class="nav-item dropdown">
-                    <a id="browseDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        Masterlists
-                    </a>
-
-                    <div class="dropdown-menu" aria-labelledby="browseDropdown">
-                        <a class="dropdown-item" href="{{ url('users') }}">
-                            Users
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ url('masterlist') }}">
-                            Cerni
-                        </a>
-                        <div class="dropdown-divider"></div>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
                     <a id="loreDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         World
                     </a>
 
                     <div class="dropdown-menu" aria-labelledby="loreDropdown">
-                        <a class="dropdown-item" href="{{ url('prompts/prompts') }}">
-                            Prompts
-                        </a>
                         <a class="dropdown-item" href="{{ url('shops') }}">
                             Shops
                         </a>
                         <a class="dropdown-item" href="{{ url(__('dailies.dailies')) }}">
-                        {{__('dailies.dailies')}}
+                            Library
                         </a>
                         <a class="dropdown-item" href="{{ url('gallery') }}">
                             Gallery
                         </a>
+                        <div class="dropdown-divider"></div>
+                        <div class="submenu-container">
+                            <div class="dropdown-item submenu-toggle">
+                                Species Guide <i class="fas fa-caret-right ml-1"></i>
+                            </div>
+                            <ul class="submenu dropdown-menu">
+                                <a class="dropdown-item" href="{{ url('info/Anatomy') }}">
+                                    Anatomy
+                                </a>
+                                <a class="dropdown-item" href="{{ url('world/species/1/traits') }}">
+                                    Traits
+                                </a>
+                                <a class="dropdown-item" href="https://ko-fi.com/corceismerch/">
+                                    Explore
+                                </a>
+                            </ul>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div class="submenu-container">
+                            <div class="dropdown-item submenu-toggle">
+                                Activities <i class="fas fa-caret-right ml-1"></i>
+                            </div>
+                            <ul class="submenu dropdown-menu">
+                                <a class="dropdown-item" href="{{ url('prompts/prompts') }}">
+                                    Prompts
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ url(__('dailies.dailies')) }}">
+                                    {{__('dailies.dailies')}}
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ url('sublist/NPC') }}">
+                                    placeholder
+                                </a>
+                            </ul>
+                        </div>
+                        <div class="submenu-container">
+                            <div class="dropdown-item submenu-toggle">
+                                Masterlists <i class="fas fa-caret-right ml-1"></i>
+                            </div>
+                            <ul class="submenu dropdown-menu">
+                                <a class="dropdown-item" href="{{ url('users') }}">
+                                    Users
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ url('masterlist') }}">
+                                    Cerni
+                                </a>
+                                <a class="dropdown-item" href="{{ url('sublist/NPC') }}">
+                                    NPCs
+                                </a>
+                            </ul>
+                        </div>
                     </div>
                 </li>
             </ul>

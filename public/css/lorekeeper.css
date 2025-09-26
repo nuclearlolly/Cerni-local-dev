@@ -288,6 +288,29 @@ main > .row {
 	}
 }
 
+/* Submenus */
+
+@media (min-width: 992px){
+    .dropdown-menu .submenu-container {
+        position: relative;
+    }
+
+    .nav-item .submenu {
+        display: none;
+        position: absolute;
+        left: 95.5%;
+        top:-7px;
+    }
+
+    .dropdown-menu > .submenu-container:hover {
+        background-color: #f1f1f1
+    }
+
+    .dropdown-menu > .submenu-container:hover > .submenu{
+        display: block;
+    }
+}
+
 /* Footer */
 
 .site-footer {
