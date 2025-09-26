@@ -8,6 +8,8 @@ use Config;
 use Carbon\Carbon;
 use Settings;
 
+use App\Models\Gallery\GallerySubmission;
+use App\Models\News;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -49,7 +51,8 @@ class HomeController extends Controller
             'about' => SitePage::where('key', 'about')->first(),
             'featured' => $character,
             'gallerySubmissions'  => $gallerySubmissions,
-            ]);
+            'newses'              => News::visible()->orderBy('updated_at', 'DESC')->take(2)->get(),
+        ]);
     }
 
     /**
