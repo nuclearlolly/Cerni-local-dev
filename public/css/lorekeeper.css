@@ -913,3 +913,7 @@ tr.accountbound {
     margin: 1%;
     max-width: 90%;
 }
+
+.ace_editor {
+    height: 100%;
+}
