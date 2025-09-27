@@ -1,6 +1,7 @@
 <div class="card mb-4">
-    <div class="card-header">
+    <div class="card-header d-flex flex-column flex-sm-row justify-content-between align-items-center">
         <h4 class="mb-0"><i class="fas fa-newspaper"></i> Recent News</h4>
+        <a href="{{ url('news') }}" class="btn btn-primary">View All News <i class="fas fa-arrow-right"></i></a>
     </div>
 
     <div class="card-body pt-0">

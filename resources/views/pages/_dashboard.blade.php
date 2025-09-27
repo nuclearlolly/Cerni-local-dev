@@ -7,7 +7,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        @include('widgets._carousel')
+        @include('widgets._carousel') 
     </div>
 </div>
 
