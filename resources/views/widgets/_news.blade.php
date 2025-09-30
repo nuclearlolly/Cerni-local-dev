@@ -1,24 +1,22 @@
-<div class="card mb-4">
+<div class="card mb-0 text-center">
     <div class="card-header d-flex flex-column flex-sm-row justify-content-between align-items-center">
         <h4 class="mb-0"><i class="fas fa-newspaper"></i> Recent News</h4>
-        <a href="{{ url('news') }}" class="btn btn-primary">View All News <i class="fas fa-arrow-right"></i></a>
     </div>
 
     <div class="card-body pt-0">
         @if ($newses->count())
             @foreach ($newses as $news)
-                <div class="{{ !$loop->last ? 'border-bottom' : '' }}">
-                    <span class="d-flex flex-column flex-sm-row align-items-sm-end pt-3 {{ !$textPreview ? 'pb-3' : '' }}">
+                <div class="row justify-content-center">
+                <div class="card-body text-center">
                         <h5 class="mb-0">
                             {!! $news->displayName !!}
                         </h5>
-                        <span class="ml-2 small">
-                            Posted {!! $news->post_at ? pretty_date($news->post_at) : pretty_date($news->created_at) !!}{!! $news->created_at != $news->updated_at ? ' || Last edited ' . pretty_date($news->updated_at) : '' !!}
-                        </span>
+                        <span class="mb-0 small">
+                            {!! $news->post_at ? pretty_date($news->post_at) : pretty_date($news->created_at) !!}
                     </span>
                     @if ($textPreview)
-                        <p class="pl-3">
-                            {!! substr(strip_tags(str_replace('<br />', '&nbsp;', $news->parsed_text)), 0, 300) !!}...
+                        <p class="mb-0">
+                            {!! substr(strip_tags(str_replace('<br />', '&nbsp;', $news->parsed_text)), 0, 200) !!}...
                             <a href="{!! $news->url !!}">Read more <i class="fas fa-arrow-right"></i></a>
                         </p>
                     @endif

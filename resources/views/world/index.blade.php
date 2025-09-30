@@ -9,34 +9,61 @@
 
     <h1>World</h1>
     <div class="row">
-        <div class="col-md-6">
-            <div class="card mb-4">
-                <div class="card-body text-center">
-                    <img src="{{ asset('images/characters.png') }}" alt="Characters" />
-                    <h5 class="card-title">Characters</h5>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><a href="{{ url('world/species') }}">Species</a></li>
-                    <li class="list-group-item"><a href="{{ url('world/subtypes') }}">Subtypes</a></li>
-                    <li class="list-group-item"><a href="{{ url('world/rarities') }}">Rarities</a></li>
-                    <li class="list-group-item"><a href="{{ url('world/trait-categories') }}">Trait Categories</a></li>
-                    <li class="list-group-item"><a href="{{ url('world/traits') }}">All Traits</a></li>
-                    <li class="list-group-item"><a href="{{ url('world/character-categories') }}">Character Categories</a></li>
-                </ul>
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-body text-center">
+                <img src="{{ asset('images/account.png') }}" alt="Account" />
+                <h5 class="card-title">Support us</h5>
             </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card mb-4">
-                <div class="card-body text-center">
-                    <img src="{{ asset('images/inventory.png') }}" alt="Items" />
-                    <h5 class="card-title">Items</h5>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><a href="{{ url('world/item-categories') }}">Item Categories</a></li>
-                    <li class="list-group-item"><a href="{{ url('world/items') }}">All Items</a></li>
-                    <li class="list-group-item"><a href="{{ url('world/currencies') }}">Currencies</a></li>
-                </ul>
-            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><a href="{{ Auth::user()->url }}">Kofi</a></li>
+            </ul>
         </div>
     </div>
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-body text-center">
+                <img src="{{ asset('images/characters.png') }}" alt="Characters" />
+                <h5 class="card-title">Species Guide</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><a href="{{ url('info/Anatomy') }}">Anatomy</a></li>
+                <li class="list-group-item"><a href="{{ url('world/species/1/traits') }}">Traits</a></li>
+                <li class="list-group-item"><a href="{{ url('characters/transfers/incoming') }}">Explore</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-body text-center">
+                <img src="{{ asset('images/inventory.png') }}" alt="Inventory" />
+                <h5 class="card-title">Activities</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><a href="{{ url('prompts/prompts') }}">Prompts</a></li>
+                <li class="list-group-item"><a href="{{ url('dailies') }}">Dailies</a></li>
+                <li class="list-group-item"><a href="{{ url('inventory') }}">Awards</a></li>
+                <li class="list-group-item"><a href="{{ url('inventory') }}">Collections</a></li>
+                <li class="list-group-item"><a href="{{ url('inventory') }}">Crafting</a></li>
+                <li class="list-group-item"><a href="{{ url('inventory') }}">Foraging</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body text-center">
+                <img src="{{ asset('images/currency.png') }}" alt="Bank" />
+                <h5 class="card-title">Masterlists</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><a href="{{ url('users') }}">Users</a></li>
+                <li class="list-group-item"><a href="{{ url('masterlist') }}">Cernis</a></li>
+                <li class="list-group-item"><a href="{{ url('sublist/NPC') }}">NPCs</a></li>
+                <li class="list-group-item"><a href="{{ url('inventory') }}">Breeding</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
 @endsection

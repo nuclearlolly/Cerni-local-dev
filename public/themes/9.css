@@ -1627,7 +1627,7 @@ select.form-control:focus::-ms-value {
 }
 
 .card-header {
-	background-color:var(--dark);
+	background-color:#E4D8F7!important;
 	border-bottom: 0px;
 }
 
