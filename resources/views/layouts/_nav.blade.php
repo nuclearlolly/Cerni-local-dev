@@ -170,6 +170,7 @@
                         </div>
                     </li>
 
+                    <img src="/images/avatars/{{ Auth::user()->avatar }}" class="img-fluid rounded" height="40" width="40" alt="{{ Auth::user()->name }}'s Avatar"/>
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{ Auth::user()->url }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>

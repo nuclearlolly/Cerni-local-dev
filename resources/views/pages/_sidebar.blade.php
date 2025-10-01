@@ -10,7 +10,7 @@
                 <a href="{{ $featured->url }}" class="h5 mb-0">@if(!$featured->is_visible) <i class="fas fa-eye-slash"></i> @endif {{ $featured->fullName }}</a>
             </div>
             <div class="small">
-                {!! $featured->image->species_id ? $featured->image->species->displayName : 'No Species' !!} ・ {!! $featured->image->rarity_id ? $featured->image->rarity->displayName : 'No Rarity' !!} ・ {!! $featured->displayOwner !!}
+             ・ {!! $featured->displayOwner !!}
             </div>
         @else
             <p>There is no featured character.</p>

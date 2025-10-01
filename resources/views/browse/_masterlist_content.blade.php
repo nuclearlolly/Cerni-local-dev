@@ -150,7 +150,7 @@
 {!! $characters->render() !!}
 <div id="gridView" class="hide">
     @foreach ($characters->chunk(4) as $chunk)
-        <div class="row">
+        <div class="row justify-content-center">
             @foreach ($chunk as $character)
                 <div class="col-md-3 col-6 text-center">
                     <div>

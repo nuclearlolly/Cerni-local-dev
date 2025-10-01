@@ -352,9 +352,9 @@ main > .row {
 	position: relative;
 }
 .dark-input {
-	background-color: color-mix(in oklab, #27086F 100%, #fff 10%);
-	outline: none;
-	box-shadow: none;
+	background-color: #2615697b;
+    backdrop-filter: saturate(100%) blur(5px);
+    box-shadow: 0px 0px 6px 3px rgba(70, 0, 136, 0.099);
 	border: 0;
 	padding: 6px 15px;
 	min-width: 90px;

@@ -1,7 +1,10 @@
-<h1>Welcome, {!! Auth::user()->displayName !!}!</h1>
-<div class="card mb-4 timestamp">
-    <div class="card-body">
-        <i class="far fa-clock"></i> {!! format_date(Carbon\Carbon::now()) !!}
+<div class="row">
+    <div class="col-md-2 text-center">
+        <img src="/images/avatars/{{ Auth::user()->avatar }}" class="img-fluid rounded" style="max-height:120px max-width:120px" alt="{{ Auth::user()->name }}'s Avatar"/>
+        </div>
+    <div class="col-md-5">
+        <h1>Welcome back</h1>
+        <h1>{!! Auth::user()->displayName !!}!</h1>
     </div>
 </div>
 
@@ -10,11 +13,10 @@
         @include('widgets._carousel')
         </div>
     <div class="col-md-4 mb-4 align-items-center">
-        <div class="card mb-0">
-            @include('widgets._news', ['textPreview' => true])
-            @include('widgets._sales')
-            </div>
-       </div>
-    </div>
+        @include('widgets._news', ['textPreview' => true])
+        </div>
+        <hr class="mb-1">
+        @include('widgets._sales')
+        </div>
 </div>
 @include('widgets._recent_gallery_submissions', ['gallerySubmissions' => $gallerySubmissions])

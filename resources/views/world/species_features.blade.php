@@ -21,11 +21,11 @@
                 </h5>
                 <div class="card-body inventory-body">
                     @foreach ($categoryFeatures->chunk(4) as $chunk)
-                        <div class="row mb-3">
+                        <div class="row mb-3 justify-content-center">
                             @foreach ($chunk as $featureId => $feature)
                                 <div class="col-md-3 col-6 text-center align-self-center inventory-item">
                                     @if ($feature->first()->has_image)
-                                        <a class="badge" style="border-radius:.5em; {{ $feature->first()->rarity->color ? 'background-color:#' . $feature->first()->rarity->color : '' }}" href="{{ $feature->first()->url }}">
+                                        <a class="badge" style="border-radius:2em; {{ $feature->first()->rarity->color ? 'background-color:#' . $feature->first()->rarity->color : '' }}" href="{{ $feature->first()->url }}">
                                             <img class="my-1 modal-image" style="max-height:150px; border-radius:.5em;" src="{{ $feature->first()->imageUrl }}" alt="{{ $feature->first()->name }}" data-id="{{ $feature->first()->id }}" />
                                         </a>
                                     @endif

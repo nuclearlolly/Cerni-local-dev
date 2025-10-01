@@ -2,7 +2,7 @@
     <div style="filter:grayscale(1); opacity:0.75">
 @endif
 
-<div class="row pt-3 pb-3" style="border: 7px double white; border-radius: 10px;  background-image: url('{{ $user->profileImgUrl }}'); background-position: top middle; text-align: center; background-size: cover;">
+<div class="row pt-3 pb-3" style="border: 7px double rgba(255, 255, 255, 0); border-radius: 10px;  background-image: url('{{ $user->profileImgUrl }}'); background-position: top middle; text-align: center; background-size: cover;">
     <div class="col-lg-12" style="text-shadow: 0 0 5px white ;">
         <h1>
             <div style="position: relative; margin: auto;">
@@ -38,14 +38,14 @@
 <br />
 
 @if (isset($user->profile->parsed_text))
-    <div class="card mb-3" style="clear:both;">
+    <div class="card mb-3 text-center" style="clear:both;">
         <div class="card-body">
             {!! $user->profile->parsed_text !!}
         </div>
     </div>
 @endif
 
-<div class="card-deck mb-4 profile-assets" style="clear:both;">
+<div class="card-deck mb-3 profile-assets" style="clear:both;">
     <div class="card profile-currencies profile-assets-card">
         <div class="card-body text-center">
             <h5 class="card-title">Bank</h5>
@@ -92,7 +92,7 @@
 </h2>
 
 @foreach ($characters->take(4)->get()->chunk(4) as $chunk)
-    <div class="row mb-4">
+    <div class="row mb-4 justify-content-center">
         @foreach ($chunk as $character)
             <div class="col-md-3 col-6 text-center">
                 <div>
@@ -111,33 +111,12 @@
 @endforeach
 
 <div class="text-right"><a href="{{ $user->url . '/characters' }}">View all...</a></div>
-<hr class="mb-5" />
 
-<div class="row col-12">
-    <div class="col-md-8">
+<div class="row">
+    <div class="col">
 
         @comments(['model' => $user->profile, 'perPage' => 5])
 
-    </div>
-    <div class="col-md-4">
-        <div class="card mb-4">
-            <div class="card-header">
-                <h5>Mention This User</h5>
-            </div>
-            @if (Auth::check() && Auth::user()->isStaff)
-                <div class="card-footer">
-                    <h5>[ADMIN]</h5>
-                    Permalinking to this user, in the rich text editor:
-                    <div class="alert alert-secondary">
-                        [user={{ $user->id }}]
-                    </div>
-                    Permalinking to this user's avatar, in the rich text editor:
-                    <div class="alert alert-secondary">
-                        [userav={{ $user->id }}]
-                    </div>
-                </div>
-            @endif
-        </div>
     </div>
 </div>
 

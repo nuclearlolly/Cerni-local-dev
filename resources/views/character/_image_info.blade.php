@@ -1,5 +1,5 @@
 {{-- Image Data --}}
-<div class="col-md-5 d-flex">
+<div class="col-md-4 d-flex">
     <div class="card character-bio w-100">
         <div class="card-header">
             <ul class="nav nav-tabs card-header-tabs">
@@ -12,11 +12,6 @@
                 <li class="nav-item">
                     <a class="nav-link" id="creditsTab-{{ $image->id }}" data-toggle="tab" href="#credits-{{ $image->id }}" role="tab">Credits</a>
                 </li>
-                @if (isset($showMention) && $showMention)
-                    <li class="nav-item">
-                        <a class="nav-link" id="mentionTab-{{ $image->id }}" data-toggle="tab" href="#mention-{{ $image->id }}" role="tab">Mention</a>
-                    </li>
-                @endif
                 @if (Auth::check() && Auth::user()->hasPower('manage_characters'))
                     <li class="nav-item">
                         <a class="nav-link" id="settingsTab-{{ $image->id }}" data-toggle="tab" href="#settings-{{ $image->id }}" role="tab"><i class="fas fa-cog"></i></a>
@@ -57,7 +52,7 @@
                     <div class="col-lg-8 col-7 pl-1">{!! $image->rarity_id ? $image->rarity->displayName : 'None' !!}</div>
                 </div>
 
-                <div class="mb-3">
+                <div class="mb-3 image-info-box">
                     <div>
                         <h5>Traits</h5>
                     </div>
@@ -162,6 +157,25 @@
                         @endforeach
                     </div>
                 </div>
+
+            <div>
+    <hr>
+    <strong>Original Desigh:</strong>
+    <div class="row no-gutters">
+        @php $character->images()->whereHas('artists')->get()->sortBy('id')->first() @endphp
+        <img src="{{ $character->image->canViewFull(Auth::check() ? Auth::user() : null) && file_exists(public_path($character->image->imageDirectory . '/' . $character->image->fullsizeFileName)) ? $character->image->fullsizeUrl : $character->image->imageUrl }}" class="image" alt="{{ $character->fullName }}" />
+    </div>
+    <div class="row no-gutters">
+        <div class="col-lg-4 col-4">
+            <h5>Art by:</h5>
+        </div>
+        <div class="col-lg-8 col-8">
+            @foreach ($image->artists as $artist)
+                <div>{!! $artist->displayLink() !!}</div>
+            @endforeach
+        </div>
+    </div>
+</div>
 
                 @if (Auth::check() && Auth::user()->hasPower('manage_characters'))
                     <div class="mt-3">

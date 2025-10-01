@@ -1,4 +1,4 @@
-<div class="card mb-0">
+<div class="card mb-0 text-center">
     <div class="card-header d-flex flex-column flex-sm-row justify-content-between align-items-center">
         <h4 class="mb-0"><i class="fas fa-money-bill-wave"></i> Recent Sales</h4>
     </div>
@@ -8,7 +8,7 @@
             @foreach($saleses as $sales)
                 <div class="row justify-content-center">
                     @if($sales->characters->count())
-                        <div class="card-body">
+                        <div class="card-body text-center">
                             <a href="{{ $sales->url }}">
                                 <img src="{{ $sales->characters->first()->character->image->thumbnailUrl }}" alt="{!! $sales->characters->first()->character->fullName !!}" class="img-thumbnail" height="200" width="200"/>
                             </a>
