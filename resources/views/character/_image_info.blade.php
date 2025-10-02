@@ -106,11 +106,13 @@
                         </div>
                     @endif
                 </div>
+                <div class="flex jc-center">
+                    <div class="flex small jc-center gap-_5">
+                        <p style="text-align: center;">
+                            <strong> Uploaded: </strong> {!! pretty_date($image->created_at) !!} • <strong> Last Edited: </strong>{!! pretty_date($image->updated_at) !!}</div></div>
                 <div>
-                    <strong>Uploaded:</strong> {!! pretty_date($image->created_at) !!}
                 </div>
                 <div>
-                    <strong>Last Edited:</strong> {!! pretty_date($image->updated_at) !!}
                 </div>
 
                 @if (Auth::check() && Auth::user()->hasPower('manage_characters'))
@@ -146,8 +148,6 @@
                             <div>{!! $designer->displayLink() !!}</div>
                         @endforeach
                     </div>
-                </div>
-                <div class="row no-gutters">
                     <div class="col-lg-4 col-4">
                         <h5>Art</h5>
                     </div>
@@ -157,17 +157,15 @@
                         @endforeach
                     </div>
                 </div>
-
             <div>
-    <hr>
-    <strong>Original Desigh:</strong>
+    <strong>Original Design:</strong>
     <div class="row no-gutters">
         @php $character->images()->whereHas('artists')->get()->sortBy('id')->first() @endphp
         <img src="{{ $character->image->canViewFull(Auth::check() ? Auth::user() : null) && file_exists(public_path($character->image->imageDirectory . '/' . $character->image->fullsizeFileName)) ? $character->image->fullsizeUrl : $character->image->imageUrl }}" class="image" alt="{{ $character->fullName }}" />
     </div>
     <div class="row no-gutters">
         <div class="col-lg-4 col-4">
-            <h5>Art by:</h5>
+            <strong>Art by:</strong>
         </div>
         <div class="col-lg-8 col-8">
             @foreach ($image->artists as $artist)

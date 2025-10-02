@@ -499,14 +499,15 @@ main > .row {
     align-items: center;
 }
 .breadcrumb a {
-    color: rgba(0,0,0,0.3);
+    color: rgb(78 5 182 / 50%);
 }
 .breadcrumb a:hover {
-    color: rgba(0,0,0,0.4);
+    color: rgb(78 5 182 / 50%);
     text-decoration: none;
 }
 .breadcrumb-item+.breadcrumb-item:before {
-    content: "»";
+    content: "➺";
+    color: rgb(78 5 182 / 50%);
 }
 .collapse-title {
     position: relative;

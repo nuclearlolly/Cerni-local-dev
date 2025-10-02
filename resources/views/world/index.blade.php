@@ -13,7 +13,7 @@
         <div class="card mb-4">
             <div class="card-body text-center">
                 <img src="{{ asset('images/account.png') }}" alt="Account" />
-                <h5 class="card-title">Support us</h5>
+                <h5 class="card-title" >Support us</h5>
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><a href="{{ Auth::user()->url }}">Kofi</a></li>

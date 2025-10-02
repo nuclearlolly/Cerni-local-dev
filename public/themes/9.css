@@ -1637,11 +1637,11 @@ select.form-control:focus::-ms-value {
 }
 
 .breadcrumb-item+.breadcrumb-item::before {
-	color: var(--gray-600);
+	color: rgb(78 5 182 / 50%);
 }
 
 .breadcrumb-item.active {
-	color: var(--gray-600);
+	color: rgb(78 5 182 / 50%);
 }
 
 .page-link {
@@ -2544,10 +2544,10 @@ a.text-dark:focus {
 }
 
 .breadcrumb-item a {
-	color: var(--gray-300);
+	color: rgb(78 5 182 / 50%);
 }
 .breadcrumb-item a:hover {
-	color: var(--gray-500);
+	color: rgb(78 5 182 / 50%);
 }
 .site-footer .copyright { color: var(--gray-600); }
 
