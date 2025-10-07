@@ -159,9 +159,11 @@
                 </div>
             <div>
     <strong>Original Design:</strong>
-    <div class="row no-gutters">
+    <div class="row no-gutters justify-content-center">
         @php $character->images()->whereHas('artists')->get()->sortBy('id')->first() @endphp
-        <img src="{{ $character->image->canViewFull(Auth::check() ? Auth::user() : null) && file_exists(public_path($character->image->imageDirectory . '/' . $character->image->fullsizeFileName)) ? $character->image->fullsizeUrl : $character->image->imageUrl }}" class="image" alt="{{ $character->fullName }}" />
+        <a href="{{ $character->image->canViewFull(Auth::check() ? Auth::user() : null) && file_exists(public_path($character->image->imageDirectory . '/' . $character->image->fullsizeFileName)) ? $character->image->fullsizeUrl : $character->image->imageUrl }}" class="image" alt="{{ $character->fullName }}" data-lightbox="entry" data-title="{{ $character->fullName }}">
+            <img src="{{ $character->image->canViewFull(Auth::check() ? Auth::user() : null) && file_exists(public_path($character->image->imageDirectory . '/' . $character->image->fullsizeFileName)) ? $character->image->fullsizeUrl : $character->image->imageUrl }}" class="image" alt="{{ $character->fullName }}" style="max-height:200px"/>
+        </a>
     </div>
     <div class="row no-gutters">
         <div class="col-lg-4 col-4">

@@ -18,8 +18,16 @@
         ]) !!}
     @endif
 
-    @include('character._header', ['character' => $character])
-
+    <div class="row">
+    <div class="col-md-3 text-center align-items-center">
+        <img src="{{ $character->image->thumbnailUrl }}" class="img-thumbnail" style="height:170px"/>
+        <hr>
+        </div>
+    <div class="col-md-9">
+        @include('character._header', ['character' => $character])
+    </div>
+    </div>
+    
     {{-- Main Image --}}
     <div class="row mb-3">
         <div class="col-md-8">
@@ -27,7 +35,7 @@
                 <a href="{{ $character->image->canViewFull(Auth::check() ? Auth::user() : null) && file_exists(public_path($character->image->imageDirectory . '/' . $character->image->fullsizeFileName)) ? $character->image->fullsizeUrl : $character->image->imageUrl }}"
                     data-lightbox="entry" data-title="{{ $character->fullName }}">
                     <img src="{{ $character->image->canViewFull(Auth::check() ? Auth::user() : null) && file_exists(public_path($character->image->imageDirectory . '/' . $character->image->fullsizeFileName)) ? $character->image->fullsizeUrl : $character->image->imageUrl }}"
-                        class="image" alt="{{ $character->fullName }}" height="460" width="auto"/>
+                        class="image" alt="{{ $character->fullName }}" style="max-height:480px"/>
                 </a>
             </div>
             @if ($character->image->canViewFull(Auth::check() ? Auth::user() : null) && file_exists(public_path($character->image->imageDirectory . '/' . $character->image->fullsizeFileName)))
@@ -36,6 +44,18 @@
         </div>
         @include('character._image_info', ['image' => $character->image])
     </div>
+
+    {{-- Bio --}}
+    @if ($character->profile->parsed_text)
+        <div class="card mb-3">
+            <div class="card-header">
+                <h5 class="m-0"><i class="fas fa-star"></i> Profile </h5>
+            </div>
+                <div class="card-body parsed-text">
+                   {!! $character->profile->parsed_text !!}
+                </div>
+        </div>
+    @endif
 
     {{-- Info --}}
     <div class="card character-bio">

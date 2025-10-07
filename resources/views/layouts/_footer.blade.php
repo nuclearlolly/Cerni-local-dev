@@ -5,13 +5,15 @@
         <li class="nav-item"><a class="nav-link">✦</a></li>
         <li class="nav-item"><a href="{{ url('info/privacy') }}" class="nav-link">Privacy</a></li>
         <li class="nav-item"><a class="nav-link">✦</a></li>
-        <li class="nav-item"><a href="{{ url('reports/bug-reports') }}" class="nav-link">Bug Reports</a></li>
-        <li class="nav-item"><a class="nav-link">✦</a></li>
         <li class="nav-item"><a href="mailto:{{ env('CONTACT_ADDRESS') }}" class="nav-link">Contact</a></li>
         <li class="nav-item"><a class="nav-link">✦</a></li>
         <li class="nav-item"><a href="https://github.com/lk-arpg/lorekeeper" class="nav-link">Lorekeeper</a></li>
         <li class="nav-item"><a class="nav-link">✦</a></li>
         <li class="nav-item"><a href="{{ url('credits') }}" class="nav-link">Credits</a></li>
+        <li class="nav-item"><a class="nav-link">✦</a></li>
+        <li class="nav-item"><a href="{{ url('credits') }}" class="nav-link">Toyhouse</a></li>
+        <li class="nav-item"><a class="nav-link">✦</a></li>
+        <li class="nav-item"><a href="{{ url('credits') }}" class="nav-link">Discord</a></li>
         <li class="nav-item"><a class="nav-link">✦</a></li>
     </ul>
 </nav>

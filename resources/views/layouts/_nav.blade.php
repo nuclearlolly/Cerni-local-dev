@@ -35,7 +35,6 @@
                             </a>
                         @endif
                 </li>
-                @if (Auth::check())
                     <li class="nav-item dropdown">
                         <a id="inventoryDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             Resources
@@ -43,87 +42,66 @@
 
                         <div class="dropdown-menu" aria-labelledby="inventoryDropdown">
                             <a class="dropdown-item" href="{{ url('info/Rules') }}">
-                                Rules
+                                <i class="fas fa-list"></i> Rules
                             </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ url('info/Newbie') }}">
-                                Newbie Guide
+                                <i class="fas fa-star"></i> Newbie Guide
                             </a>
                             <a class="dropdown-item" href="{{ url('world') }}">
-                                Encyclopedia
+                                <i class="fas fa-moon"></i> Encyclopedia
                             </a>
                         </div>
                     </li>
-                @endif
-                <li class="nav-item dropdown">
-                    <a id="loreDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        World
-                    </a>
 
-                    <div class="dropdown-menu" aria-labelledby="loreDropdown">
-                        <a class="dropdown-item" href="{{ url('shops') }}">
-                            Shops
-                        </a>
-                        <a class="dropdown-item" href="{{ url(__('dailies.dailies')) }}">
-                            Library
-                        </a>
-                        <a class="dropdown-item" href="{{ url('gallery') }}">
-                            Gallery
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <div class="submenu-container">
-                            <div class="dropdown-item submenu-toggle">
-                                Species Guide <i class="fas fa-caret-right ml-1"></i>
-                            </div>
-                            <ul class="submenu dropdown-menu">
-                                <a class="dropdown-item" href="{{ url('info/Anatomy') }}">
-                                    Anatomy
-                                </a>
-                                <a class="dropdown-item" href="{{ url('world/species/1/traits') }}">
-                                    Traits
-                                </a>
-                                <a class="dropdown-item" href="https://ko-fi.com/corceismerch/">
-                                    Explore
-                                </a>
-                            </ul>
-                        </div>
-                        <div class="dropdown-divider"></div>
-                        <div class="submenu-container">
-                            <div class="dropdown-item submenu-toggle">
-                                Activities <i class="fas fa-caret-right ml-1"></i>
-                            </div>
-                            <ul class="submenu dropdown-menu">
-                                <a class="dropdown-item" href="{{ url('prompts/prompts') }}">
-                                    Prompts
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ url(__('dailies.dailies')) }}">
-                                    {{__('dailies.dailies')}}
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ url('sublist/NPC') }}">
-                                    placeholder
-                                </a>
-                            </ul>
-                        </div>
-                        <div class="submenu-container">
-                            <div class="dropdown-item submenu-toggle">
-                                Masterlists <i class="fas fa-caret-right ml-1"></i>
-                            </div>
-                            <ul class="submenu dropdown-menu">
-                                <a class="dropdown-item" href="{{ url('users') }}">
-                                    Users
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ url('masterlist') }}">
-                                    Cerni
-                                </a>
-                                <a class="dropdown-item" href="{{ url('sublist/NPC') }}">
-                                    NPCs
-                                </a>
-                            </ul>
-                        </div>
+<li class="nav-item dropdown megamenu">
+    <a id="loreDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+        World
+    </a>
+        <div class="dropdown-menu" aria-labelledby="inventoryDropdown">
+                <div class="p-2">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="font-weight-bold text-uppercase text-center">Locations</h6>
+                      <div class="dropdown-divider"></div>
+                      <ul class="list-unstyled">
+                        <a class="dropdown-item" a href="{{ url('shops') }}"><i class="fas fa-coins"></i> Shops</a>
+                        <a class="dropdown-item" a href="{{ url('shops') }}"><i class="fas fa-book"></i> Archives</a>
+                        <a class="dropdown-item" a href="{{ url('gallery') }}"> <i class="fas fa-palette"></i> Gallery</a>
+                      </ul>
                     </div>
+                    <div class="col-sm-3">
+                      <h6 class="font-weight-bold text-uppercase text-center">Species Guide</h6>
+                      <div class="dropdown-divider"></div>
+                      <ul class="list-unstyled">
+                        <a class="dropdown-item" a href="{{ url('info/Anatomy') }}"><i class="fas fa-paw"></i> Anatomy</a>
+                        <a class="dropdown-item" a href="{{ url('world/species/1/traits') }}"><i class="fas fa-scroll"></i> Traits</a>
+                        <a class="dropdown-item" a href="{{ url('shops') }}"><i class="fas fa-map"></i> Explore</a>
+                      </ul>
+                    </div>
+                    <div class="col-sm-3">
+                      <h6 class="font-weight-bold text-uppercase text-center">Activities</h6>
+                      <div class="dropdown-divider"></div>
+                      <ul class="list-unstyled">
+                        <a class="dropdown-item" a href="{{ url('prompts') }}"><i class="fas fa-pen"></i> Prompts</a>
+                        <a class="dropdown-item" a href="{{ url(__('dailies.dailies')) }}"><i class="fas fa-clipboard-list"></i> Dailies</a>
+                        <a class="dropdown-item" a href="{{ url('shops') }}"><i class="fas fa-seedling"></i> Foraging</a>
+                        <a class="dropdown-item" a href="{{ url('shops') }}"><i class="fas fa-award"></i></i> Achievements</a>
+                        <a class="dropdown-item" a href="{{ url('shops') }}"><i class="fas fa-leaf"></i> Collections</a>
+                      </ul>
+                    </div>
+                    <div class="col-sm-3">
+                      <h6 class="font-weight-bold text-uppercase text-center">Masterlists</h6>
+                      <div class="dropdown-divider"></div>
+                      <ul class="list-unstyled">
+                        <a class="dropdown-item" a href="{{ url('users') }}"><i class="fas fa-users"></i> Users</a>
+                        <a class="dropdown-item" a href="{{ url('masterlist') }}"><i class="fas fa-star"></i> Cerni</a>
+                        <a class="dropdown-item" a href="{{ url('sublist/NPC') }}"><i class="fas fa-star"></i> NPCs</a>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+        </div>
                 </li>
             </ul>
 
@@ -170,7 +148,7 @@
                         </div>
                     </li>
 
-                    <img src="/images/avatars/{{ Auth::user()->avatar }}" class="img-fluid rounded" height="40" width="40" alt="{{ Auth::user()->name }}'s Avatar"/>
+                    <img src="/images/avatars/{{ Auth::user()->avatar }}" class="text-center align-self-center" height="40" width="40" alt="{{ Auth::user()->name }}'s Avatar"/>
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{ Auth::user()->url }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>

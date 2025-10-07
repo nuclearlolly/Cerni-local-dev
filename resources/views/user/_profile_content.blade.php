@@ -114,7 +114,6 @@
 
 <div class="row">
     <div class="col">
-
         @comments(['model' => $user->profile, 'perPage' => 5])
 
     </div>
