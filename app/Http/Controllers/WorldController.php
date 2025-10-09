@@ -15,6 +15,9 @@ use App\Models\Species\Subtype;
 use App\Models\User\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Prompt\PromptCategory;
+use App\Models\Prompt\Prompt;
+use App\Models\SitePageSection;
 
 class WorldController extends Controller {
     /*

@@ -278,13 +278,26 @@ Route::group(['prefix' => 'pages', 'middleware' => 'power:edit_pages'], function
 
 // NEWS
 Route::group(['prefix' => 'news', 'middleware' => 'power:manage_news'], function () {
-    Route::get('/', 'NewsController@getIndex');
+        Route::get('/', 'NewsController@getIndex');
     Route::get('create', 'NewsController@getCreateNews');
     Route::get('edit/{id}', 'NewsController@getEditNews');
     Route::get('delete/{id}', 'NewsController@getDeleteNews');
     Route::post('create', 'NewsController@postCreateEditNews');
     Route::post('edit/{id?}', 'NewsController@postCreateEditNews');
     Route::post('delete/{id}', 'NewsController@postDeleteNews');
+});
+
+// PAGE CATEGORIES
+Route::group(['prefix'=> 'page-categories', 'middleware' => 'power:edit_pages'], function() {
+
+    Route::get('/', 'PageController@getCategoryIndex');
+    Route::get('create', 'PageController@getCreatePageCategory');
+    Route::get('edit/{id}', 'PageController@getEditPageCategory');
+    Route::get('delete/{id}', 'PageController@getDeletePageCategory');
+    Route::post('create', 'PageController@postCreateEditPageCategory');
+    Route::post('edit/{id?}', 'PageController@postCreateEditPageCategory');
+    Route::post('delete/{id}', 'PageController@postDeletePageCategory');
+    Route::post('sort', 'PageController@postSortPageCategory');
 });
 
 // SALES

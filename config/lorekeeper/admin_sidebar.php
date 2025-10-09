@@ -62,6 +62,10 @@ return [
         'power' => 'edit_pages',
         'links' => [
             [
+                'name' => 'Page Categories',
+                'url' => 'admin/page-categories'
+            ],
+            [
                 'name' => 'Pages',
                 'url' => 'admin/pages'
             ],
