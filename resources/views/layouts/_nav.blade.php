@@ -85,9 +85,7 @@
                       <ul class="list-unstyled">
                         <a class="dropdown-item" a href="{{ url('prompts') }}"><i class="fas fa-pen"></i> Prompts</a>
                         <a class="dropdown-item" a href="{{ url(__('dailies.dailies')) }}"><i class="fas fa-clipboard-list"></i> Dailies</a>
-                        <a class="dropdown-item" a href="{{ url('shops') }}"><i class="fas fa-seedling"></i> Foraging</a>
                         <a class="dropdown-item" a href="{{ url('shops') }}"><i class="fas fa-award"></i></i> Achievements</a>
-                        <a class="dropdown-item" a href="{{ url('shops') }}"><i class="fas fa-leaf"></i> Collections</a>
                       </ul>
                     </div>
                     <div class="col-sm-3">

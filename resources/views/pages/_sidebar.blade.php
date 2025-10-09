@@ -17,3 +17,25 @@
         @endif
     </li>
 </ul>
+
+<ul class="text-center align-items-center">
+    <li class="sidebar-header"><a href="#" class="card-link">Latest Gossip:</a></li>
+
+    <li class="sidebar-section text-center align-items-center">
+        <div class="card-body">
+                <strong id="factDisplay"></strong>
+        </div>
+    </li>
+</ul>
+
+<script>
+    (function newFact() {
+  const facts = [
+   '"Some say that the color of your horn can determine what sort of personality you have!"',
+   '"Aster and Darius used to be very close, but no one knows why they no longer talk to each other."',
+   '"Fawns are born with their hooves covered by a soft, rubbery protective layer called eponychium, or more commonly known as "fairy fingers"!"'
+];
+  const randomFact = Math.floor(Math.random() * facts.length);
+  document.getElementById('factDisplay').innerHTML = facts[randomFact];
+})();
+</script>

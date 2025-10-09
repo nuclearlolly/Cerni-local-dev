@@ -7,7 +7,7 @@
 @section('content')
     {!! breadcrumbs(['Encyclopedia' => 'world']) !!}
 
-    <h1>World</h1>
+    <h1>Encyclopedia</h1>
     <div class="row">
     <div class="col-md-6">
         <div class="card mb-4">
@@ -16,7 +16,7 @@
                 <h5 class="card-title" >Support us</h5>
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><a href="{{ Auth::user()->url }}">Kofi</a></li>
+                <li class="list-group-item"><a href="{{ url('info/Anatomy') }}">Kofi</a></li>
             </ul>
         </div>
     </div>
@@ -44,10 +44,7 @@
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><a href="{{ url('prompts/prompts') }}">Prompts</a></li>
                 <li class="list-group-item"><a href="{{ url('dailies') }}">Dailies</a></li>
-                <li class="list-group-item"><a href="{{ url('inventory') }}">Awards</a></li>
-                <li class="list-group-item"><a href="{{ url('inventory') }}">Collections</a></li>
-                <li class="list-group-item"><a href="{{ url('inventory') }}">Crafting</a></li>
-                <li class="list-group-item"><a href="{{ url('inventory') }}">Foraging</a></li>
+                <li class="list-group-item"><a href="{{ url('inventory') }}">Achievements</a></li>
             </ul>
         </div>
     </div>
@@ -61,7 +58,6 @@
                 <li class="list-group-item"><a href="{{ url('users') }}">Users</a></li>
                 <li class="list-group-item"><a href="{{ url('masterlist') }}">Cernis</a></li>
                 <li class="list-group-item"><a href="{{ url('sublist/NPC') }}">NPCs</a></li>
-                <li class="list-group-item"><a href="{{ url('inventory') }}">Breeding</a></li>
             </ul>
         </div>
     </div>
