@@ -1,6 +1,6 @@
 <h1>Welcome, {!! Auth::user()->displayName !!}!</h1>
 
-@include('widgets._user_guide')
+@include('widgets._dashboard_guide')
 
 <div class="card mb-4 timestamp">
     <div class="card-body">
