@@ -15,6 +15,8 @@
         <li class="nav-item"><a class="nav-link">✦</a></li>
         <li class="nav-item"><a href="{{ url('credits') }}" class="nav-link">Discord</a></li>
         <li class="nav-item"><a class="nav-link">✦</a></li>
+        <li class="nav-item"><a href="{{ url('credits') }}" class="nav-link">Ko-fi</a></li>
+        <li class="nav-item"><a class="nav-link">✦</a></li>
     </ul>
 </nav>
 <div class="copyright">&copy; {{ config('lorekeeper.settings.site_name', 'Lorekeeper') }} v{{ config('lorekeeper.settings.version') }} {{ Carbon\Carbon::now()->year }}</div>
