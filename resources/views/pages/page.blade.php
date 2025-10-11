@@ -5,11 +5,18 @@
 @endsection
 
 @section('content')
+<div class="float-right">
+    <a href="{{ url('admin/pages/edit/'.$page->id) }}" data-toggle="tooltip" data-title="Edit Page" data-original-title="" title="">
+        <i class="fas fa-pen fa-crown"></i>
+        <span class="sr-only">Edit Page</span>
+    </a>
+</div>
 @if($page->page_category_id && $page->category->section)
 {!! breadcrumbs(['World' => 'world', $page->category->section->name => '/world/info/'.$page->category->section->key , $page->title => $page->url])!!}
 @else
 {!! breadcrumbs([$page->title => $page->url]) !!}
 @endif
+
 <h1>{{ $page->title }}</h1>
 <div class="mb-4">
     <div><strong>Created:</strong> {!! format_date($page->created_at) !!}</div>
