@@ -236,11 +236,11 @@ class WorldController extends Controller {
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function getSpeciesFeatures($id) {
+    public function getSpeciesFeatures($id)
+    {
         $categories = FeatureCategory::orderBy('sort', 'DESC')->get();
         $rarities = Rarity::orderBy('sort', 'ASC')->get();
-
-        $species = Species::visible(Auth::check() ? Auth::user() : null)->where('id', $id)->first();
+        $species = Species::visible(Auth::user() ?? null)->where('id', $id)->first();
         if (!$species) {
             abort(404);
         }
@@ -248,12 +248,40 @@ class WorldController extends Controller {
             abort(404);
         }
 
-        $features = count($categories) ?
+        //this is so fucking ugly no one look please
+        if ($species->id == 1) {
+            // Min: refactored this for easier editing in the long run
+            $rarityIds = [ 3, 4, 5];
+            $excludedFeatures = [];
+            $excludedRarities = [];
+
+            foreach ($rarityIds as $rarity) {
+                array_push($excludedFeatures, ['rarity_id', '<>', $rarity]);
+                array_push($excludedRarities, ['id', '<>', $rarity]);
+            }
+
+            $features = count($categories) ?
             $species->features()
-                ->visible(Auth::check() ? Auth::user() : null)
-                ->with('rarity', 'subtype')
-                ->orderByRaw('FIELD(feature_category_id,'.implode(',', $categories->pluck('id')->toArray()).')')
-                ->orderByRaw('FIELD(rarity_id,'.implode(',', $rarities->pluck('id')->toArray()).')')
+                ->orderByRaw('FIELD(feature_category_id,' . implode(',', $categories->pluck('id')->toArray()) . ')')
+                ->orderByRaw('FIELD(rarity_id,' . implode(',', $rarities->pluck('id')->toArray()) . ')')
+                ->orderBy('has_image', 'DESC')
+                ->orderBy('name')->where($excludedFeatures)
+                ->get()
+                ->groupBy(['feature_category_id', 'id']) :
+            $species->features()
+                ->orderByRaw('FIELD(rarity_id,' . implode(',', $rarities->pluck('id')->toArray()) . ')')->where($excludedFeatures)
+                ->orderBy('has_image', 'DESC')
+                ->orderBy('name')
+                ->get()
+                ->groupBy(['feature_category_id', 'id']);
+
+            $rarities = Rarity::orderBy('sort', 'ASC')->where($excludedRarities)->get();
+        } else {
+            $features = count($categories) ?
+            $species->features()
+                ->visible(Auth::user() ?? null)
+                ->orderByRaw('FIELD(feature_category_id,' . implode(',', $categories->pluck('id')->toArray()) . ')')
+                ->orderByRaw('FIELD(rarity_id,' . implode(',', $rarities->pluck('id')->toArray()) . ')')
                 ->orderBy('has_image', 'DESC')
                 ->orderBy('name')
                 ->get()
@@ -266,9 +294,8 @@ class WorldController extends Controller {
                 })
                 ->groupBy(['feature_category_id', 'id']) :
             $species->features()
-                ->visible(Auth::check() ? Auth::user() : null)
-                ->with('rarity', 'subtype')
-                ->orderByRaw('FIELD(rarity_id,'.implode(',', $rarities->pluck('id')->toArray()).')')
+                ->visible(Auth::user() ?? null)
+                ->orderByRaw('FIELD(rarity_id,' . implode(',', $rarities->pluck('id')->toArray()) . ')')
                 ->orderBy('has_image', 'DESC')
                 ->orderBy('name')
                 ->get()
@@ -280,15 +307,15 @@ class WorldController extends Controller {
                     return true;
                 })
                 ->groupBy(['feature_category_id', 'id']);
+        }
 
         return view('world.species_features', [
-            'species'    => $species,
+            'species' => $species,
             'categories' => $categories->keyBy('id'),
-            'rarities'   => $rarities->keyBy('id'),
-            'features'   => $features,
+            'rarities' => $rarities->keyBy('id'),
+            'features' => $features,
         ]);
     }
-
     /**
      * Provides a single trait's description html for use in a modal.
      *

@@ -17,6 +17,29 @@
         Gallery
     </h1>
 
+    <table class="wsite-multicol-table" style="border-collapse:collapse;margin-left:auto;margin-right:auto;" border="0" cellspacing="10" cellpadding="0">
+    <tbody class="wsite-multicol-tbody">
+    <tr style="height:10px;">
+    <td style="height:10px;width:190.8px;">
+            <h5><a href="http://localhost/character/NPC-001"><img class="img-thumbnail" style="margin-left:auto;margin-right:auto;" src="http://localhost/images/characters/0/1_oQkJVhjdCW_th.png" alt="1_oQkJVhjdCW_th.png"></a></h5>
+            </td>
+        <td style="height:10px;width:8.9875px;">&nbsp;</td>
+        <td style="width:650.412px;">
+    <div class="paragraph">
+        <div class="paragraph">
+            <div class="card">
+                <div class="card-body">
+                    <p style="text-align:left;">"Come in come in! I am <a href="http://localhost/character/NPC-001">Aster</a>, and this marvelous place is called the Customization Shop! Very creative, I know. Here you can find all sorts of cosmetics to ensure you will always look fa-bu-lous!"</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </td>
+    </tr>
+    </tbody>
+</table>
+<hr>
+
     @if ($galleries->count())
         {!! $galleries->render() !!}
 

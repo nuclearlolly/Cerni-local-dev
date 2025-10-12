@@ -1,16 +1,14 @@
-<h1>Welcome, {!! Auth::user()->displayName !!}!</h1>
-
-@include('widgets._dashboard_guide')
-
 <div class="row">
     <div class="col-md-2 text-center">
         <img src="/images/avatars/{{ Auth::user()->avatar }}" class="img-fluid rounded" style="max-height:120px max-height:120px" alt="{{ Auth::user()->name }}'s Avatar"/>
-        </div>
+    </div>
     <div class="col-md-5">
         <h1>Welcome back</h1>
         <h1>{!! Auth::user()->displayName !!}!</h1>
     </div>
 </div>
+
+@include('widgets._dashboard_guide')
 
 <div class="row">
     <div class="col-md-8">

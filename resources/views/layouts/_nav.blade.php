@@ -76,7 +76,7 @@
                       <ul class="list-unstyled">
                         <a class="dropdown-item" a href="{{ url('info/Anatomy') }}"><i class="fas fa-paw"></i> Anatomy</a>
                         <a class="dropdown-item" a href="{{ url('world/species/1/traits') }}"><i class="fas fa-scroll"></i> Traits</a>
-                        <a class="dropdown-item" a href="{{ url('shops') }}"><i class="fas fa-map"></i> Explore</a>
+                        <a class="dropdown-item" a href="{{ url('info/Map') }}"><i class="fas fa-map"></i> Locations</a>
                       </ul>
                     </div>
                     <div class="col-sm-3">
