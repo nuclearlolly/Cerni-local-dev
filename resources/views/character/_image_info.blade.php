@@ -71,56 +71,49 @@
                         </div>
 
                         <div class="mb-3 image-info-box">
-                            <div>
-                                <h5>Traits</h5>
-                            </div>
                             @if (config('lorekeeper.extensions.traits_by_category'))
                                 <div>
-                                    <h5>Traits</h5>
-                                </div>
-                                @if (config('lorekeeper.extensions.traits_by_category'))
-                                    <div>
-                                        @php
-                                            $traitgroup = $image->features()->get()->groupBy('feature_category_id');
-                                        @endphp
-                                        @if ($image->features()->count())
-                                            @foreach ($traitgroup as $key => $group)
-                                                <div class="mb-2">
-                                                    @if ($key)
-                                                        <strong>{!! $group->first()->feature->category->displayName !!}:</strong>
-                                                    @else
-                                                        <strong>Miscellaneous:</strong>
-                                                    @endif
-                                                    @foreach ($group as $feature)
-                                                        <div class="ml-md-2">{!! $feature->feature->displayName !!} @if ($feature->data)
-                                                                ({{ $feature->data }})
-                                                            @endif
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                            @endforeach
-                                        @else
-                                            <div>No traits listed.</div>
-                                        @endif
-                                    </div>
-                                @else
-                                    <div>
-                                        <?php $features = $image->features()->with('feature.category')->get(); ?>
-                                        @if ($features->count())
-                                            @foreach ($features as $feature)
-                                                <div>
-                                                    @if ($feature->feature->feature_category_id)
-                                                        <strong>{!! $feature->feature->category->displayName !!}:</strong>
-                                                        @endif {!! $feature->feature->displayName !!} @if ($feature->data)
+                                    @php
+                                        $traitgroup = $image->features()->get()->groupBy('feature_category_id');
+                                    @endphp
+                                    @if ($image->features()->count())
+                                        @foreach ($traitgroup as $key => $group)
+                                            <div class="mb-2">
+                                                @if ($key)
+                                                    <strong>{!! $group->first()->feature->category->displayName !!}:</strong>
+                                                @else
+                                                    <strong>Miscellaneous:</strong>
+                                                @endif
+                                                @foreach ($group as $feature)
+                                                    <div class="ml-md-2">{!! $feature->feature->displayName !!} @if ($feature->data)
                                                             ({{ $feature->data }})
                                                         @endif
-                                                </div>
-                                            @endforeach
-                                        @else
-                                            <div>No traits listed.</div>
-                                        @endif
-                                    </div>
-                                @endif
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        @endforeach
+                                    @else
+                                        <div>No traits listed.</div>
+                                    @endif
+                                </div>
+                            @else
+                                <div>
+                                    <?php $features = $image->features()->with('feature.category')->get(); ?>
+                                    @if ($features->count())
+                                        @foreach ($features as $feature)
+                                            <div>
+                                                @if ($feature->feature->feature_category_id)
+                                                    <strong>{!! $feature->feature->category->displayName !!}:</strong>
+                                                    @endif {!! $feature->feature->displayName !!} @if ($feature->data)
+                                                        ({{ $feature->data }})
+                                                    @endif
+                                            </div>
+                                        @endforeach
+                                    @else
+                                        <div>No traits listed.</div>
+                                    @endif
+                                </div>
+                            @endif
                         </div>
                         <div>
                             <strong>Uploaded:</strong> {!! pretty_date($image->created_at) !!}
