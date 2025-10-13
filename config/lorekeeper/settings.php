@@ -159,7 +159,7 @@ return [
     | 'masterlist_image_background' => '#ffffff',
     |
     */
-    'watermark_masterlist_images'                       => 0,
+    'watermark_masterlist_images'                       => 1,
 
     'masterlist_image_dimension'                        => 0,
     'masterlist_image_dimension_target'                 => 'shorter',
@@ -352,7 +352,7 @@ return [
     |
     */
 
-    'allow_username_changes'                            => 0,
+    'allow_username_changes'                            => 1,
     'username_change_cooldown'                          => 30,
 
     /*
@@ -429,4 +429,25 @@ return [
     |
     */
     'enable_character_content_warnings'                 => 1,
+
+    'currency_symbol' => '$',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Terms Popup
+    |--------------------------------------------------------------------------
+    |
+    | Defines the content of the terms popup that appears on your site. 
+    | For the text field, some html is fine.
+    |
+    | 0: do not show terms popup ever. 
+    | 1: Show terms popup until the visitor or user agreed.
+    */
+
+    'show_terms_popup' => 1,
+    'terms_popup' => [
+        "title" => "Wait a second!", 
+        "text" => "This species contain sensitive topics that may not appropriate for people under 15. By proceeding, you agree to follow the site terms and let us know that you read this message.", 
+        "button" => "Accept"
+    ],
 ];

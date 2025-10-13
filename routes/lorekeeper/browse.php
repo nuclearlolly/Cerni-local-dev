@@ -194,3 +194,10 @@ Route::group(['prefix' => 'reports', 'namespace' => 'Users'], function () {
     Search Function
 **************************************************************************************************/
 Route::get('asearch', 'SearchController@siteSearch');
+
+/**************************************************************************************************
+    Terms accept
+**************************************************************************************************/
+Route::group(['prefix' => 'terms'], function() {
+    Route::get('/accept', 'TermsController@acceptTerms');
+});
