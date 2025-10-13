@@ -204,28 +204,23 @@
                         @if (!config('lorekeeper.settings.wysiwyg_comments'))
                             In a comment:
                             <div class="alert alert-secondary">
-                                [character={{ $character->slug }}]
+                                [{{ $character->fullName }}]({{ $character->url }})
                             </div>
-                            @if (!config('lorekeeper.settings.wysiwyg_comments'))
-                                In a comment:
-                                <div class="alert alert-secondary">
-                                    [{{ $character->fullName }}]({{ $character->url }})
-                                </div>
-                            @endif
-                            <hr>
-                            <div class="my-2">
-                                <strong>For Thumbnails:</strong>
-                            </div>
-                            In the rich text editor:
+                        @endif
+                        <hr>
+                        <div class="my-2">
+                            <strong>For Thumbnails:</strong>
+                        </div>
+                        In the rich text editor:
+                        <div class="alert alert-secondary">
+                            [charthumb={{ $character->slug }}]
+                        </div>
+                        @if (!config('lorekeeper.settings.wysiwyg_comments'))
+                            In a comment:
                             <div class="alert alert-secondary">
-                                [charthumb={{ $character->slug }}]
+                                [![Thumbnail of {{ $character->fullName }}]({{ $character->image->thumbnailUrl }})]({{ $character->url }})
                             </div>
-                            @if (!config('lorekeeper.settings.wysiwyg_comments'))
-                                In a comment:
-                                <div class="alert alert-secondary">
-                                    [![Thumbnail of {{ $character->fullName }}]({{ $character->image->thumbnailUrl }})]({{ $character->url }})
-                                </div>
-                            @endif
+                        @endif
                     </div>
                 @endif
 
