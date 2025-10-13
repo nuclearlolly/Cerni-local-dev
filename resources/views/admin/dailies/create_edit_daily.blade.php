@@ -68,6 +68,7 @@ true]) !!}
 
 @section('scripts')
 @parent
+    @include('js._tinymce_wysiwyg')
 @include('js._loot_js', ['showLootTables' => true, 'showRaffles' => true])
 
 <script>

@@ -50,7 +50,7 @@
         <div class="card-body text-center">
             <h5 class="card-title">Bank</h5>
             <div class="profile-assets-content">
-                @foreach ($user->getCurrencies(false) as $currency)
+                @foreach ($user->getCurrencies(false, false, Auth::user() ?? null) as $currency)
                     <div>{!! $currency->display($currency->quantity) !!}</div>
                 @endforeach
             </div>
@@ -96,7 +96,11 @@
         @foreach ($chunk as $character)
             <div class="col-md-3 col-6 text-center">
                 <div>
-                    <a href="{{ $character->url }}"><img src="{{ $character->image->thumbnailUrl }}" class="img-thumbnail" alt="{{ $character->fullName }}" /></a>
+                    @if ((Auth::check() && Auth::user()->settings->content_warning_visibility == 0 && isset($character->character_warning)) || (isset($character->character_warning) && !Auth::check()))
+                        <a href="{{ $character->url }}"><img src="{{ asset('images/content-warning.png') }}" class="img-thumbnail" alt="Content Warning - {{ $character->fullName }}" /></a>
+                    @else
+                        <a href="{{ $character->url }}"><img src="{{ $character->image->thumbnailUrl }}" class="img-thumbnail" alt="{{ $character->fullName }}" /></a>
+                    @endif
                 </div>
                 <div class="mt-1">
                     <a href="{{ $character->url }}" class="h5 mb-0">
@@ -105,17 +109,68 @@
                         @endif {{ Illuminate\Support\Str::limit($character->fullName, 20, $end = '...') }}
                     </a>
                 </div>
+                @if ((Auth::check() && Auth::user()->settings->content_warning_visibility < 2 && isset($character->character_warning)) || (isset($character->character_warning) && !Auth::check()))
+                    <div class="small">
+                        <p><span class="text-danger"><strong>Character Warning:</strong></span> {!! nl2br(htmlentities($character->character_warning)) !!}</p>
+                    </div>
+                @endif
             </div>
         @endforeach
     </div>
 @endforeach
 
 <div class="text-right"><a href="{{ $user->url . '/characters' }}">View all...</a></div>
+<hr class="mb-5" />
 
-<div class="row">
-    <div class="col">
-        @comments(['model' => $user->profile, 'perPage' => 5])
-
+<div class="row col-12">
+    @if ($user->settings->allow_profile_comments)
+        <div class="col-md-8">
+            @comments(['model' => $user->profile, 'perPage' => 5])
+        </div>
+    @endif
+    <div class="col-md-{{ $user->settings->allow_profile_comments ? 4 : 12 }}">
+        <div class="card mb-4">
+            <div class="card-header" data-toggle="collapse" data-target="#mentionHelp" aria-expanded="{{ $user->settings->allow_profile_comments ? 'true' : 'false' }}">
+                <h5>Mention This User</h5>
+            </div>
+            <div class="card-body collapse {{ $user->settings->allow_profile_comments ? 'show' : '' }}" id="mentionHelp">
+                In the rich text editor:
+                <div class="alert alert-secondary">
+                    {{ '@' . $user->name }}
+                </div>
+                @if (!config('lorekeeper.settings.wysiwyg_comments'))
+                    In a comment:
+                    <div class="alert alert-secondary">
+                        [{{ $user->name }}]({{ $user->url }})
+                    </div>
+                @endif
+                <hr>
+                <div class="my-2"><strong>For Names and Avatars:</strong></div>
+                In the rich text editor:
+                <div class="alert alert-secondary">
+                    {{ '%' . $user->name }}
+                </div>
+                @if (!config('lorekeeper.settings.wysiwyg_comments'))
+                    In a comment:
+                    <div class="alert alert-secondary">
+                        [![{{ $user->name }}'s Avatar]({{ $user->avatarUrl }})]({{ $user->url }}) [{{ $user->name }}]({{ $user->url }})
+                    </div>
+                @endif
+            </div>
+            @if (Auth::check() && Auth::user()->isStaff)
+                <div class="card-footer">
+                    <h5>[ADMIN]</h5>
+                    Permalinking to this user, in the rich text editor:
+                    <div class="alert alert-secondary">
+                        [user={{ $user->id }}]
+                    </div>
+                    Permalinking to this user's avatar, in the rich text editor:
+                    <div class="alert alert-secondary">
+                        [userav={{ $user->id }}]
+                    </div>
+                </div>
+            @endif
+        </div>
     </div>
 </div>
 

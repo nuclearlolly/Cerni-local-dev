@@ -50,7 +50,7 @@
                                 @if (config('lorekeeper.extensions.item_entry_expansion.extra_fields'))
                                     @if (isset($item->rarity) && $item->rarity)
                                         <div class="col-md">
-                                            <p><strong>Rarity:</strong> {!! $item->rarity !!}</p>
+                                            <p><strong>Rarity:</strong> {!! $item->rarity->displayName !!}</p>
                                         </div>
                                     @endif
                                     @if (isset($item->itemArtist) && $item->itemArtist)
@@ -108,7 +108,7 @@
                                                         <strong>Purchaseable At:</strong>
                                                     </p>
                                                     <div class="row">
-                                                        @foreach ($item->shops as $shop)
+                                                        @foreach ($item->shops(Auth::user() ?? null) as $shop)
                                                             <span class="badge" style="font-size:95%; margin:5px;">
                                                                 <a href="{{ $shop->url }}">
                                                                     {{ $shop->name }}

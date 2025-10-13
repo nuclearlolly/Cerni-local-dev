@@ -23,7 +23,7 @@ return [
             ],
             [
                 'name' => 'Admin Logs',
-                'url'  => 'admin/logs',
+                'url'  => 'admin/admin-logs',
             ],
             [
                 'name' => 'Staff Reward Settings',
@@ -209,6 +209,10 @@ return [
             [
                 'name' => 'Carousel',
                 'url'  => 'admin/data/carousel',
+                ],
+                [
+                'name' => 'Dynamic Limits',
+                'url'  => 'admin/data/limits',
             ],
         ],
     ],
@@ -239,6 +243,10 @@ return [
             [
                 'name' => 'File Manager',
                 'url'  => 'admin/files',
+            ],
+            [
+                'name' => 'Log Viewer',
+                'url'  => 'admin/logs',
             ],
         ],
     ],

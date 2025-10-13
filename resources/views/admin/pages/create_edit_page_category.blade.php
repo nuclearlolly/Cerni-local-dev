@@ -82,13 +82,14 @@
 
 @section('scripts')
 @parent
+    @include('js._tinymce_wysiwyg')
 <script>
-$( document ).ready(function() {    
+$( document ).ready(function() {
     $('.delete-category-button').on('click', function(e) {
         e.preventDefault();
         loadModal("{{ url('admin/page-categories/delete') }}/{{ $category->id }}", 'Delete Category');
     });
 });
-    
+
 </script>
 @endsection

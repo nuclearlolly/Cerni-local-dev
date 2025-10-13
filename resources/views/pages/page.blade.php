@@ -4,6 +4,12 @@
     {{ $page->title }}
 @endsection
 
+@if ($page->has_image)
+    @section('meta-img')
+        {{ $page->imageUrl }}
+    @endsection
+@endif
+
 @section('content')
 <div class="float-right">
     <a href="{{ url('admin/pages/edit/'.$page->id) }}" data-toggle="tooltip" data-title="Edit Page" data-original-title="" title="">
@@ -19,6 +25,11 @@
 
 <h1>{{ $page->title }}</h1>
 
+    @if ($page->has_image)
+        <div class="page-image">
+            <img src="{{ $page->imageUrl }}" alt="{{ $page->name }}" class="w-100" />
+        </div>
+    @endif
     <div class="site-page-content parsed-text">
         {!! $page->parsed_text !!}
     </div>

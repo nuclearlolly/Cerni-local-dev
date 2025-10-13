@@ -68,6 +68,17 @@ body {
     height: auto !important;
 }
 
+.mobile-handle {
+    font-size: 1.75rem;
+    position: absolute;
+    top: -1rem;
+    right: 0;
+}
+
+.mobile-handle i {
+    transform: rotate(-25deg);
+}
+
 /**************************************************************************************************
 
     Layout
@@ -372,7 +383,7 @@ main > .row {
 	font-weight: 900;
 }
 .search-bar.loader:after {
-	
+
 }
 .dark-input:hover, .dark-input:focus {
 	filter: brightness(1.5);
@@ -399,8 +410,8 @@ main > .row {
 #searchResult:after {
 	position: absolute;
 	content: "";
-	width: 0; 
-  	height: 0; 
+	width: 0;
+  	height: 0;
   	border-left: 15px solid transparent;
   	border-right: 15px solid transparent;
   	border-bottom: 15px solid #3C4248;
@@ -454,7 +465,7 @@ main > .row {
     100% {
         transform: rotate(360deg);
     }
-    } 
+    }
 
 /**************************************************************************************************
 
@@ -917,4 +928,25 @@ tr.accountbound {
 
 .ace_editor {
     height: 100%;
+}
+
+.content-warning {
+    filter: blur(2px) grayscale(60%);
+    transition: filter 0.25s ease;
+}
+
+.content-warning:hover {
+    filter: none;
+}
+
+/* CODE EDITOR *************************************************************************************/
+#ace-code-editor-wrapper .editor-btn {
+    background: white;
+    font-size: 14px;
+    height: 34px;
+    width: 34px;
+}
+
+#ace-code-editor-wrapper .editor-btn:hover {
+    background: buttonface;
 }
