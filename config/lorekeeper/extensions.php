@@ -118,7 +118,7 @@ return [
 
     // Show Small Badges on the User's Characters/MYO Slots Page
     // Indicating Trading Status (and Gift Art & Gift Writing Status)
-    'badges_on_user_character_page' => 0,
+    'badges_on_user_character_page' => 1,
 
     // Allow users to return a pending design update to drafts, for instance if they make a mistake. - Uri
     'design_return_to_draft' => 1,
