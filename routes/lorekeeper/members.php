@@ -259,3 +259,8 @@ Route::group(['prefix' => 'comments', 'namespace' => 'Comments'], function () {
 Route::group(['prefix' => 'limits'], function () {
     Route::post('unlock/{id}', 'Admin\LimitController@postUnlockLimits');
 });
+
+Route::group(['prefix' => 'redeem-code', 'namespace' => 'Users'], function() {
+    Route::get('/', 'PrizeCodeController@getIndex');
+    Route::post('/redeem', 'PrizeCodeController@postRedeemPrize');
+});

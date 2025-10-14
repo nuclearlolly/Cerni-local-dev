@@ -23,7 +23,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Route;
 
-class UserController extends Controller {
+use App\Models\Character\CharacterCategory;
+use App\Models\User\UserPrizeLog;
+
+class UserController extends Controller
+{
     /*
     |--------------------------------------------------------------------------
     | User Controller
@@ -470,6 +474,22 @@ class UserController extends Controller {
             'user'       => $this->user,
             'characters' => true,
             'favorites'  => $this->user->characters->count() ? GallerySubmission::whereIn('id', $userFavorites)->whereIn('id', GalleryCharacter::whereIn('character_id', $userCharacters)->pluck('gallery_submission_id')->toArray())->visible(Auth::user() ?? null)->orderBy('created_at', 'DESC')->paginate(20)->appends($request->query()) : null,
+        ]);
+    }
+
+        /**
+     * Shows a user's redeem logs.
+     *
+     * @param  string  $name
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function getUserRedeemLogs($name)
+    {
+        $user = $this->user;
+        return view('home._redeem_logs', [
+            'user' => $this->user,
+            'logs' => $this->user->getRedeemLogs(0),
+            'sublists' => Sublist::orderBy('sort', 'DESC')->get()
         ]);
     }
 }

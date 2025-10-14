@@ -209,12 +209,16 @@ return [
             [
                 'name' => 'Carousel',
                 'url'  => 'admin/data/carousel',
-                ],
-                [
+            ],
+            [
                 'name' => 'Dynamic Limits',
                 'url'  => 'admin/data/limits',
             ],
-        ],
+            [
+                'name' => 'Codes',
+                'url' => 'admin/prizecodes'
+            ],
+        ]
     ],
     'Raffles'    => [
         'power' => 'manage_raffles',
