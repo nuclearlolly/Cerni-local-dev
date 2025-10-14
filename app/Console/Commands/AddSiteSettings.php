@@ -5,7 +5,8 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
-class AddSiteSettings extends Command {
+class AddSiteSettings extends Command
+{
     /**
      * The name and signature of the console command.
      *
@@ -77,6 +78,16 @@ class AddSiteSettings extends Command {
 
         $this->addSiteSetting('featured_character', 1, 'ID of the currently featured character.');
 
+        $this->addSiteSetting('event_currency', 1, 'ID of the currency used for events.');
+
+        $this->addSiteSetting('event_global_score', 0, '0: Event currency is only tracked individually, 1: A global tally of all event currency is also kept.');
+
+        $this->addSiteSetting('event_global_goal', 0, 'Goal for global event score. Has no effect if global event score is not 1 and/or if set to 0.');
+
+        $this->addSiteSetting('event_teams', 0, '0: Teams are not enabled, even if set. 1: Teams are enabled.');
+
+        $this->addSiteSetting('event_weighting', 0, '0: Score is not weighted depending on number of team members, 1: Score is weighted. Does not impact raw currency amounts.');
+
         $this->line("\nSite settings up to date!");
 
         $this->addSiteSetting('deactivated_privacy', 0, 'Who can view the deactivated list? 0: Admin only, 1: Staff only, 2: Members only, 3: Public.');
@@ -88,6 +99,7 @@ class AddSiteSettings extends Command {
         $this->addSiteSetting('comment_dislikes_enabled', 0, '0: Dislikes disabled, 1: Dislikes enabled.');
 
         $this->addSiteSetting('carousel_speed', 10000, 'Speed of the carousel in milliseconds.');
+
         $this->addSiteSetting('shop_type', 0, '0: Default, 1: Collapsible.');
 
         $this->addSiteSetting('coupon_settings', 0, '0: Percentage is taken from total (e.g 20% from 2 items costing a total of 100 = 80), 1: Percentage is taken from item (e.g 20% from 2 items costing a total of 100 = 90)');
@@ -113,6 +125,7 @@ class AddSiteSettings extends Command {
      * @param int    $value
      * @param string $description
      */
+    
     private function addSiteSetting($key, $value, $description) {
         if (!DB::table('site_settings')->where('key', $key)->exists()) {
             DB::table('site_settings')->insert([

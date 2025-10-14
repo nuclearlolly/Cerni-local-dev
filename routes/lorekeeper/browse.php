@@ -141,6 +141,10 @@ Route::group(['prefix' => __('dailies.dailies')], function() {
 });
 
 
+Route::group(['prefix' => 'event-tracking'], function() {
+    Route::get('/', 'EventController@getEventTracking');
+});
+
 /**************************************************************************************************
     Site Pages
 **************************************************************************************************/
