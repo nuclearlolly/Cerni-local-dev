@@ -87,6 +87,8 @@ class AddSiteSettings extends Command
         $this->addSiteSetting('event_teams', 0, '0: Teams are not enabled, even if set. 1: Teams are enabled.');
 
         $this->addSiteSetting('event_weighting', 0, '0: Score is not weighted depending on number of team members, 1: Score is weighted. Does not impact raw currency amounts.');
+        
+        $this->addSiteSetting('birthday_item', 1, 'ID of item to be granted to a user on their birth month. Suggestion is to set this to a box type item.');
 
         $this->line("\nSite settings up to date!");
 
