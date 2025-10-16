@@ -45,8 +45,8 @@
                                 <i class="fas fa-list"></i> Rules
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ url('info/Newbie') }}">
-                                <i class="fas fa-star"></i> Newbie Guide
+                            <a class="dropdown-item" href="{{ url('faq') }}">
+                            <i class="fas fa-star"></i> Newbie Guide
                             </a>
                             <a class="dropdown-item" href="{{ url('world') }}">
                                 <i class="fas fa-moon"></i> Encyclopedia
