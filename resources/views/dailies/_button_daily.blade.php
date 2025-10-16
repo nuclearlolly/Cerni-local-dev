@@ -50,23 +50,23 @@
         <h4 class="m-0 align-items-center">Progress ({{$timer->step ?? 0}}/{{$daily->maxStep}}) {!! add_help(($daily->is_streak) ? 'Progress will reset if you miss collecting your reward in the given timeframe.' : 'Progress is safe even if you miss collecting your reward in the given timeframe.') !!}</h4>
     </div>
 
-    <div class="card-body row p-4 m-auto w-100 text-center justify-content-center ">
+    <div class="card-body row m-auto w-100 text-center justify-content-center ">
         @foreach($daily->rewards()->get()->groupBy('step') as $step => $rewards)
         @if($step > 0)
-        <div class="card col-lg-2 col-6 w-100 {{ ($step > ($timer->step ?? 0)) ? 'daily' : '' }} text-center justify-content-center border p-0">
-            <div class="row w-100 p-1 m-auto {{ ($step <= ($timer->step ?? 0))}}">
-                <div class="col-lg col-6 h-100">
-                    <h5 class="p-1 m-0"> Day {{ $step }}</h5>
-                </div>
-                <div class="col p-0">
-                    <h4 class="p-1 m-0">@if($step > ($timer->step ?? 0))<i class="fa fa-lock"></i> @else <i class="fa fa-check"></i> @endif</h4>
+        <div class="card col-lg-2 col-12 w-100 m-2 {{ ($step > ($timer->step ?? 0)) ? 'daily' : '' }} text-center justify-content-center border p-0">
+    
+            <div class="justify-content-center h-100">
+                <div class="col p-1">
+                <h4 class="">@if($step > ($timer->step ?? 0))<i class="fa fa-lock"></i> @else <i class="fa fa-check"></i> @endif</h4>
+                <h5 class=""> Day {{ $step }}</h5>
                 </div>
             </div>
+
             <div class="row w-100 p-0 m-auto text-center justify-content-center border">
                 @if($daily->progress_display =='all' || ($step <= ($timer->step ?? 0)))
                     @foreach($rewards as $reward)
-                    <div class="col-6">
-                        @if($reward->rewardImage)<div class="row text-center justify-content-center"><img src="{{ $reward->rewardImage }}" alt="{{ $reward->reward()->first()->name }}" style="max-width:75px;width:100%;" /></div>@endif
+                    <div class="p-2">
+                        @if($reward->rewardImage)<div class="row text-center justify-content-center"><img src="{{ $reward->rewardImage }}" alt="{{ $reward->reward()->first()->name }}" style="max-width:100px;width:100%;" /></div>@endif
                         <div class="row text-center justify-content-center">{{$reward->quantity}} {{$reward->reward()->first()->name}}</div>
 
                     </div>
