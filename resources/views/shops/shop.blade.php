@@ -9,7 +9,6 @@
         {{ $shop->shopImageUrl }}
     @endsection
 @endif
-
 @section('shops-content')
     <x-admin-edit title="Shop" :object="$shop" />
     {!! breadcrumbs(['Shops' => 'shops', $shop->name => $shop->url]) !!}
@@ -51,13 +50,13 @@
                         $visible = '<i class="fas fa-eye-slash mr-1"></i>';
                     }
                 @endphp
-                <div class="card mb-3 inventory-category">
+                <div class="card mb-3 inventory-category text-center">
                     <h5 class="card-header inventory-header">
                         {!! isset($categoryItems->first()->category) ? '<a href="' . $categoryItems->first()->category->searchUrl . '">' . $visible . $categoryItems->first()->category->name . '</a>' : 'Miscellaneous' !!}
                     </h5>
                     <div class="card-body inventory-body">
                         @foreach ($categoryItems->chunk(4) as $chunk)
-                            <div class="row mb-3">
+                            <div class="row mb-3 justify-content-center align-items-center">
                                 @foreach ($chunk as $item)
                                     <div class="col-sm-3 col-6 text-center inventory-item" data-id="{{ $item->pivot->id }}">
                                         @if ($item->has_image)

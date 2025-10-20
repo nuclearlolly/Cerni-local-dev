@@ -8,26 +8,7 @@
     {!! breadcrumbs(['Newbie Guide' => 'faq']) !!}
 <h1>NEWBIE GUIDE</h1>
     <div class="paragraph">
-        <div class="paragraph">
-            <div class="card">
-                <div class="card-body">
-                    <h6 style="text-align: left;">COMMON TERMS</h6>
-                    <hr />
-                    <p class="mb-0" style="text-align: left;">There are some terms thrown around on the site that some newcomers may be unfamiliar with!<br /><br /></p>
-                        <ul class="mb-0">
-                            <li style="text-align: left;"><strong>MYO slot</strong> - "Make your own" slot. This is an item that allows you to design a character and have it officially added to the website.
-                                <ul>
-                                    <li style="text-align: left;">Also known as a "Character Slot".<br /><br /></li>
-                                </ul>
-                            </li>
-                            <li style="text-align: left;"><strong>FTO</strong> - "First Time Owner". Any user who has <em>never </em>owned a character from our species<br /><br /></li>
-                            <li style="text-align: left;"><strong>FAQ</strong> - "Frequently Asked Questions". Questions that are made on a regular basis by users, make sure to check them!<br /><br /></li>
-                            <li style="text-align: left;"><strong>ARPG</strong> - "Art Role Playing Games".</li>
-                        </ul>
-                </div>
-            </div>
-        </div>
-        <h5 class="paragraph" style="text-align: center;"> </h5>
+        <h6 class="paragraph" style="text-align: center;"> </h6>
             <h3>SPECIES GUIDES (links)</h3>
             <div class="paragraph">
                 <div class="paragraph">
@@ -87,7 +68,7 @@
         {!! Form::select('tags[]', $tags, null, ['class' => 'form-control col-md-6 mx-auto', 'multiple', 'id' => 'tags', 'placeholder' => 'Select Categories']) !!}
     </div>
 
-    <div id="results">
+    <div id="results" class="mb-3 image-info-box" style="max-height:350px">
         @include('browse._faq_content', ['faqs' => $faqs])
     </div>
 @endsection

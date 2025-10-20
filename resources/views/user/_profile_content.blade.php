@@ -3,7 +3,7 @@
 @endif
 
 <div class="row pt-3 pb-3" style="border: 7px double rgba(255, 255, 255, 0); border-radius: 10px;  background-image: url('{{ $user->profileImgUrl }}'); background-position: top middle; text-align: center; background-size: cover;">
-    <div class="col-lg-12" style="text-shadow: 0 0 5px white ;">
+    <div class="col-lg-12" style="text-shadow: 0 0 5px #40009f1b;">
         <h1>
             <div style="position: relative; margin: auto;">
                 <img src="/images/avatars/{{ $user->avatar }}" style="width:125px; height:125px; border-radius:50%;" alt="{{ $user->name }}" />
@@ -13,7 +13,7 @@
                 <a href="{{ url('reports/new?url=') . $user->url }}"><i class="fas fa-exclamation-triangle fa-xs" data-toggle="tooltip" title="Click here to report this user." style="opacity: 50%; font-size:0.5em;"></i></a>
             </div>
         </h1>
-        <div class="row no-gutters justify-content-center mb-5" style="background-color: rgba(255, 255, 255, .60); padding: 5px; border-radius: 10px;">
+        <div class="row no-gutters justify-content-center mb-5" style="background-color: rgba(255, 255, 255, 0.51); backdrop-filter: saturate(200%) blur(2px); padding: 5px; border-radius: 10px; box-shadow: 0px 0px 6px 3px rgba(70, 0, 136, 0.289);">
             <div class="col-md-1 text-center">
                 <i class="fas fa-users"></i> {!! $user->rank->displayName !!}{!! add_help($user->rank->parsed_description) !!}
             </div>
@@ -35,7 +35,7 @@
     </div>
 </div>
 
-<br />
+<br/>
 
 @if (isset($user->profile->parsed_text))
     <div class="card mb-3 text-center" style="clear:both;">
@@ -120,9 +120,9 @@
 @endforeach
 
 <div class="text-right"><a href="{{ $user->url . '/characters' }}">View all...</a></div>
-<hr class="mb-5" />
+<hr class="mb-5"/>
 
-<div class="row col-12">
+<div class="row">
     @if ($user->settings->allow_profile_comments)
         <div class="col-md-8">
             @comments(['model' => $user->profile, 'perPage' => 5])
@@ -172,8 +172,8 @@
             @endif
         </div>
     </div>
-</div>
+
 
 @if ($deactivated)
-    </div>
+</div>
 @endif

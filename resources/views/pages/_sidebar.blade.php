@@ -27,7 +27,6 @@
         </div>
     </li>
 </ul>
-
 <script>
     (function newFact() {
   const facts = [
