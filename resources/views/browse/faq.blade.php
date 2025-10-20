@@ -4,57 +4,12 @@
     Frequently Asked Questions
 @endsection
 
+@section('sidebar')
+    @include('browse._faqsidebar')
+@endsection
+
 @section('content')
-    {!! breadcrumbs(['Newbie Guide' => 'faq']) !!}
-<h1>NEWBIE GUIDE</h1>
-    <div class="paragraph">
-        <h6 class="paragraph" style="text-align: center;"> </h6>
-            <h3>SPECIES GUIDES (links)</h3>
-            <div class="paragraph">
-                <div class="paragraph">
-                    <div class="card">
-                        <div class="card-body">
-                            <ul>
-                                <li style="text-align: left;"><a href="https://www.corceis.com/info/subguide1">What are Cerni?</a> <br />
-                                    <ul>
-                                        <li><a href="https://www.corceis.com/info/Anatomy">Anatomy Guide.</a></li>
-                                        <li><a href="https://www.corceis.com/world/species/1/traits">Traits.</a></li>
-                                        <li><a href="https://www.corceis.com/world/library/book/2">Lore.</a></li>
-                                        <li><a href="https://www.corceis.com/world/library/book/3">Magic.</a></li>
-                                        <li><a href="https://www.corceis.com/world/info">Locations.</a></li>
-                                    </ul>
-                                </li>
-                                    <li style="text-align: left;"><a href="https://www.corceis.com/info/subguide4">How Traits Work?</a></li>
-                                </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-            <h5 class="paragraph" style="text-align: center;"> </h5>
-            <h3>Site GUIDES (links)</h3>
-            <div class="paragraph">
-                <div class="paragraph">
-                    <div class="card">
-                        <div class="card-body">
-                            <ul>
-                                <li style="text-align: left;"><a href="https://www.corceis.com/info/subguide5">How do I get a cernis?</a><br />
-                                    <ul>
-                                        <li><a href="https://www.corceis.com/info/subguide5#Breeding">How to breed cernis (and other species)?</a></li>
-                                        <li><a href="https://www.corceis.com/info/subguide15">What are Official customs/adopts?</a></li>
-                                        <li><a href="https://www.corceis.com/info/subguide9">How do I edit a cerni design?</a></li>
-                                    </ul>
-                                        </li>
-                                            <li style="text-align: left;"><a href="http://localhost/info/PromptGuide">How do prompts work?</a></li>
-                                            <li style="text-align: left;"><a href="https://www.corceis.com/info/AboutAwards">What are Achievements?</a></li>
-                                            <li style="text-align: left;"><a href="https://www.corceis.com/info/subguide7">How to use Claims?</a></li>
-                                            <li style="text-align: left;"><a href="https://www.corceis.com/info/subguide7">How to use Trades?</a></li>
-                                    </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    <hr/>
+    {!! breadcrumbs(['FAQ' => 'faq']) !!}
     <h1>FAQ</h1>
     <p>
         You can search the FAQ by tag, category, or keyword. If you can't find what you're looking for, feel free to reach out to staff.
