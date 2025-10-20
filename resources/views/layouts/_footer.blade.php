@@ -5,6 +5,8 @@
         <li class="nav-item"><a class="nav-link">✦</a></li>
         <li class="nav-item"><a href="{{ url('info/privacy') }}" class="nav-link">Privacy</a></li>
         <li class="nav-item"><a class="nav-link">✦</a></li>
+        <li class="nav-item"><a href="{{ url('team') }}" class="nav-link">Team</a></li>
+        <li class="nav-item"><a class="nav-link">✦</a></li>
         <li class="nav-item"><a href="mailto:{{ env('CONTACT_ADDRESS') }}" class="nav-link">Contact</a></li>
         <li class="nav-item"><a class="nav-link">✦</a></li>
         <li class="nav-item"><a href="https://github.com/lk-arpg/lorekeeper" class="nav-link">Lorekeeper</a></li>

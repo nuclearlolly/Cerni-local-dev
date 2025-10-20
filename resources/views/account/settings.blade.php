@@ -103,7 +103,11 @@
         {!! Form::close() !!}
     </div>
 
-    <div class="card p-3 mb-2">
+@if(Auth::user()->isStaff)
+    @include('widgets._staff_profile_form', ['user' => Auth::user(), 'adminView' => 0])
+@endif
+
+<div class="card p-3 mb-2">
         <h3>Dashboard Guide Visibility</h3>
         {!! Form::open(['url' => 'account/guide']) !!}
         <div class="form-group row">
@@ -305,4 +309,11 @@
             $y1.val(values.points[3]);
         }
     </script>
+@endsection
+
+@section('scripts')
+@parent
+    @if(Auth::user()->isStaff)
+        @include('js._website_links_js')
+    @endif
 @endsection
