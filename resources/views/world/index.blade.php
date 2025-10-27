@@ -12,7 +12,7 @@
     <div class="col-md-6">
         <div class="card mb-4">
             <div class="card-body text-center">
-                <img src="{{ asset('images/account.png') }}" alt="Account" />
+                <img class="img-fluid" src="{{ asset('images/account.png') }}" alt="Account"/>
                 <h5 class="card-title" >Support us</h5>
             </div>
             <ul class="list-group list-group-flush">
@@ -23,7 +23,7 @@
     <div class="col-md-6">
         <div class="card mb-4">
             <div class="card-body text-center">
-                <img src="{{ asset('images/characters.png') }}" alt="Characters" />
+                <img class="img-fluid" src="{{ asset('images/characters.png') }}" alt="Characters" />
                 <h5 class="card-title">Species Guide</h5>
             </div>
             <ul class="list-group list-group-flush">
@@ -38,7 +38,7 @@
     <div class="col-md-6">
         <div class="card mb-4">
             <div class="card-body text-center">
-                <img src="{{ asset('images/inventory.png') }}" alt="Inventory" />
+                <img class="img-fluid" src="{{ asset('images/inventory.png') }}" alt="Inventory" />
                 <h5 class="card-title">Activities</h5>
             </div>
             <ul class="list-group list-group-flush">
@@ -51,7 +51,7 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-body text-center">
-                <img src="{{ asset('images/currency.png') }}" alt="Bank" />
+                <img class="img-fluid" src="{{ asset('images/currency.png') }}" alt="Bank" />
                 <h5 class="card-title">Masterlists</h5>
             </div>
             <ul class="list-group list-group-flush">

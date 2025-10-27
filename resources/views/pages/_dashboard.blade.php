@@ -2,7 +2,7 @@
     <div class="col-md-2 text-center">
         <img src="/images/avatars/{{ Auth::user()->avatar }}" class="img-fluid rounded" style="max-height:120px max-height:120px" alt="{{ Auth::user()->name }}'s Avatar"/>
     </div>
-    <div class="col-md-5">
+    <div class="col-md-7">
         <h1>Welcome back</h1>
         <h1>{!! Auth::user()->displayName !!}!</h1>
     </div>

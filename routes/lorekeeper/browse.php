@@ -219,3 +219,8 @@ Route::group(['prefix' => 'faq',], function () {
     Route::get('/modal/{id}', 'BrowseController@getFaqQuestion')->where(['id' => '[0-9]+']);
     Route::get('/search', 'BrowseController@getFaqSearch');
 });
+
+/**************************************************************************************************
+    Archives
+**************************************************************************************************/
+Route::get('Archives', 'ArchivesController@getArchive');

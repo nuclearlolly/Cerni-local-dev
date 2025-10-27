@@ -1,5 +1,5 @@
 <ul class="text-center">
-    <li class="sidebar-header"><a href="#" class="card-link">Star of the month!</a></li>
+    <li class="sidebar-header"><a href="http://localhost/prompts/13" class="card-link"><i class="fas fa-star fa-shake-icon mr-2"></i>Star of the month!</a></li>
 
     <li class="sidebar-section p-2">
         @if(isset($featured) && $featured)
@@ -10,7 +10,7 @@
                 <a href="{{ $featured->url }}" class="h5 mb-0">@if(!$featured->is_visible) <i class="fas fa-eye-slash"></i> @endif {{ $featured->fullName }}</a>
             </div>
             <div class="small">
-             ・ {!! $featured->displayOwner !!}
+             {!! $featured->displayOwner !!}
             </div>
         @else
             <p>There is no featured character.</p>
@@ -19,7 +19,7 @@
 </ul>
 
 <ul class="text-center align-items-center">
-    <li class="sidebar-header"><a href="#" class="card-link">Latest Gossip:</a></li>
+    <li class="sidebar-header"><a href="http://localhost/Archives" class="card-link"><i class="fas fa-star fa-shake-icon mr-2"></i>World Facts:</a></li>
 
     <li class="sidebar-section text-center align-items-center">
         <div class="card-body">

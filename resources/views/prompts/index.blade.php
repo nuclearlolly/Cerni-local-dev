@@ -16,6 +16,7 @@
                     <h5 class="card-title">Prompts</h5>
                 </div>
                 <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><a href="{{ url('info/PromptGuide') }}">Prompts Guide</a></li>
                     <li class="list-group-item"><a href="{{ url('prompts/prompt-categories') }}">Prompts Categories</a></li>
                     <li class="list-group-item"><a href="{{ url('prompts/prompts') }}">All Prompts</a></li>
                 </ul>

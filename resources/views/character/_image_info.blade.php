@@ -1,5 +1,5 @@
-{{-- Image Data --}}
-<div class="col-md-4 d-flex">
+<hr>
+    {{-- Image Data --}}
     <div class="w-100">
         @if ((isset($image->content_warnings) && !Auth::check()) || (Auth::check() && Auth::user()->settings->content_warning_visibility < 2 && isset($image->content_warnings)))
             <div class="alert alert-danger text-center">
@@ -15,90 +15,152 @@
                 <div>{!! implode(', ', $image->content_warnings) !!}</div>
             </div>
         @endif
-        <div class="card character-bio w-100">
-            <div class="card-header">
-                <ul class="nav nav-tabs card-header-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="infoTab-{{ $image->id }}" data-toggle="tab" href="#info-{{ $image->id }}" role="tab">Info</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="notesTab-{{ $image->id }}" data-toggle="tab" href="#notes-{{ $image->id }}" role="tab">Notes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="creditsTab-{{ $image->id }}" data-toggle="tab" href="#credits-{{ $image->id }}" role="tab">Credits</a>
-                    </li>
-                    @if (Auth::check() && Auth::user()->hasPower('manage_characters'))
-                        <li class="nav-item">
-                            <a class="nav-link" id="settingsTab-{{ $image->id }}" data-toggle="tab" href="#settings-{{ $image->id }}" role="tab"><i class="fas fa-cog"></i></a>
-                        </li>
-                    @endif
-                </ul>
-            </div>
-            <div class="card-body tab-content">
-                <div class="text-right mb-1">
-                    <div class="badge badge-primary">Image #{{ $image->id }}</div>
+    </div>
+    {{-- Bio --}}
+        @if ($character->profile->parsed_text)
+            <div class="card mb-4"  style="border-top-right-radius: 1.8em; border-top-left-radius: 1.7em; box-shadow: 0px 0px 6px 3px rgba(70, 0, 136, 0.08);">
+            <button class="collapsible text-center"><h5><i class="fas fa-star fa-shake-icon"></i> Profile ▾</h5></button>
+                <div class="content" style="border-bottom-right-radius: 0em; border-bottom-left-radius: 0em; padding-left: 30px;
+  padding-right: 30px; background-color: #5114a200;">
+                <hr>
+                {!! $character->profile->parsed_text !!}
+                <a class="float-left" href="{{ url('reports/new?url=') . $character->url . '/profile' }}"><i class="fas fa-exclamation-triangle" data-toggle="tooltip" title="Click here to report this character's profile." style="opacity: 50%;"></i></a>
+    @if (Auth::check() && ($character->user_id == Auth::user()->id || Auth::user()->hasPower('manage_characters')))
+        <div class="text-right mb-2">
+            <a href="{{ $character->url . '/profile/edit' }}" class="btn btn-outline-info btn-sm"><i class="fas fa-cog"></i> Edit Profile</a>
+        </div>
+    @endif
                 </div>
-                @if (!$image->character->is_myo_slot && !$image->is_valid)
-                    <div class="alert alert-danger">
-                        This version of this character is outdated, and only noted here for recordkeeping purposes. Do not use as an official reference.
-                    </div>
-                @endif
+            <div class="card mb-4" style="border-top-right-radius: 0em; border-top-left-radius: 0em; box-shadow: 0px 0px 6px 3px rgba(70, 0, 136, 0);">
+            </div>
+            </div>
+        @endif
+        <script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
 
-                {{-- Basic info --}}
-                <div class="tab-pane fade show active" id="info-{{ $image->id }}">
-                    <div class="row no-gutters">
-                        <div class="col-lg-4 col-5">
-                            <h5>Species</h5>
-                        </div>
-                        <div class="col-lg-8 col-7 pl-1">{!! $image->species_id ? $image->species->displayName : 'None' !!}</div>
-                    </div>
-                    @if (count($image->subtypes))
-                        <div class="row no-gutters">
-                            <div class="col-lg-4 col-5">
-                                <h5>Subtype{{ count($image->subtypes) > 1 ? 's' : '' }}</h5>
-                            </div>
-                            <div class="col-lg-8 col-7 pl-1">
-                                {!! $image->displaySubtypes() !!}
-                            </div>
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
+</script>
+
+    {{-- Info --}}
+    <div class="row">
+    <div class="col-md-6">
+        <div class="card mb-4">
+    <div class="card character-bio">
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" id="statsTab" data-toggle="tab" href="#stats" role="tab">Stats</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="notesTab" data-toggle="tab" href="#notes" role="tab">Notes</a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body tab-content">
+            <div class="tab-pane fade show active" id="stats">
+                @include('character._tab_stats', ['character' => $character])
+            </div>
+            <div class="tab-pane fade" id="notes">
+                {{-- Image notes --}}
+                    @if ($image->parsed_description)
+                        <div class="parsed-text imagenoteseditingparse">{!! $image->parsed_description !!}</div>
+                    @else
+                        <div class="imagenoteseditingparse">No additional notes given.</div>
+                    @endif
+                    @if (Auth::check() && Auth::user()->hasPower('manage_characters'))
+                        <div class="mt-3">
+                            <a href="#" class="btn btn-outline-info btn-sm edit-notes" data-id="{{ $image->id }}"><i class="fas fa-cog"></i> Edit</a>
                         </div>
                     @endif
-                    <div class="row no-gutters">
-                        <div class="col-lg-4 col-5">
-                            <h5>Rarity</h5>
-                        </div>
-                        <div class="col-lg-8 col-7 pl-1">{!! $image->rarity_id ? $image->rarity->displayName : 'None' !!}</div>
+            </div>
+        </div> 
+    </div>
+    </div>
+</div>
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card character-bio">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link" id="infoTab" data-toggle="tab" href="#info" role="tab">Info</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="creditTab" data-toggle="tab" href="#credit" role="tab">Credits</a>
+                            </li>
+                            @if (Auth::check() && Auth::user()->hasPower('manage_characters'))
+                                <li class="nav-item">
+                                    <a class="nav-link" id="settingsTab" data-toggle="tab" href="#settings-{{ $character->slug }}" role="tab"><i class="fas fa-cog"></i></a>
+                                </li>
+                            @endif
+                        </ul>
                     </div>
+                    <div class="card-body tab-content">
+                        <div class="tab-pane fade show active" id="info">
+                            <div class="row no-gutters">
+                                <div class="col-lg-3 col-5">
+                                    <h5>Species</h5>
+                                </div>
+                                <div class="col-lg-3 col-5">{!! $image->species_id ? $image->species->displayName : 'None' !!}</div>
+                            </div>
+                            @if (count($image->subtypes))
+                                <div class="row no-gutters">
+                                    <div class="col-lg-3 col-5">
+                                        <h5>Subtype{{ count($image->subtypes) > 1 ? 's' : '' }}</h5>
+                                    </div>
+                                    <div class="col-lg-3 col-5">
+                                        {!! $image->displaySubtypes() !!}
+                                    </div>
+                                </div>
+                            @endif
+                            <div class="row no-gutters">
+                                <div class="col-lg-3 col-5">
+                                    <h5>Rarity</h5>
+                                </div>
+                                <div class="col-lg-3 col-5">{!! $image->rarity_id ? $image->rarity->displayName : 'None' !!}</div>
+                            </div>
 
-                    <div class="mb-3 image-info-box">
-                        <div>
-                            <h5>Traits</h5>
-                        </div>
-                        @if (config('lorekeeper.extensions.traits_by_category'))
-                            <div>
-                                @php
-                                    $traitgroup = $image->features()->get()->groupBy('feature_category_id');
-                                @endphp
-                                @if ($image->features()->count())
-                                    @foreach ($traitgroup as $key => $group)
-                                        <div class="mb-2">
-                                            @if ($key)
-                                                <strong>{!! $group->first()->feature->category->displayName !!}:</strong>
-                                            @else
-                                                <strong>Miscellaneous:</strong>
-                                            @endif
-                                            @foreach ($group as $feature)
-                                                <div class="ml-md-2">{!! $feature->feature->displayName !!} @if ($feature->data)
-                                                        ({{ $feature->data }})
+                            <div class="mb-3 image-info-box" style="max-height: 102px;">
+                                <div>
+                                    <h5>Traits</h5>
+                                </div>
+                                @if (config('lorekeeper.extensions.traits_by_category'))
+                                    <div>
+                                        @php
+                                            $traitgroup = $image->features()->get()->groupBy('feature_category_id');
+                                        @endphp
+                                        @if ($image->features()->count())
+                                            @foreach ($traitgroup as $key => $group)
+                                                <div class="mb-2">
+                                                   @if ($key)
+                                                        <strong>{!! $group->first()->feature->category->displayName !!}:</strong>
+                                                    @else
+                                                        <strong>Miscellaneous:</strong>
                                                     @endif
+                                                    @foreach ($group as $feature)
+                                                        <div class="ml-md-2">{!! $feature->feature->displayName !!} @if ($feature->data)
+                                                                ({{ $feature->data }})
+                                                            @endif
+                                                        </div>
+                                                    @endforeach
                                                 </div>
                                             @endforeach
-                                        </div>
-                                    @endforeach
+                                        @else
+                                            <div>No traits listed.</div>
+                                        @endif
+                                    </div>
                                 @else
-                                    <div>No traits listed.</div>
-                                @endif
-                            </div>
-                        @else
                             <div>
                                 <?php $features = $image->features()->with('feature.category')->get(); ?>
                                 @if ($features->count())
@@ -123,10 +185,6 @@
                                 <strong> Uploaded: </strong> {!! pretty_date($image->created_at) !!} • <strong> Last Edited: </strong>{!! pretty_date($image->updated_at) !!}
                         </div>
                     </div>
-                    <div>
-                    </div>
-                    <div>
-                    </div>
 
                     @if (Auth::check() && Auth::user()->hasPower('manage_characters'))
                         <div class="mt-3">
@@ -134,24 +192,7 @@
                         </div>
                     @endif
                 </div>
-
-                {{-- Image notes --}}
-                <div class="tab-pane fade" id="notes-{{ $image->id }}">
-                    @if ($image->parsed_description)
-                        <div class="parsed-text imagenoteseditingparse">{!! $image->parsed_description !!}</div>
-                    @else
-                        <div class="imagenoteseditingparse">No additional notes given.</div>
-                    @endif
-                    @if (Auth::check() && Auth::user()->hasPower('manage_characters'))
-                        <div class="mt-3">
-                            <a href="#" class="btn btn-outline-info btn-sm edit-notes" data-id="{{ $image->id }}"><i class="fas fa-cog"></i> Edit</a>
-                        </div>
-                    @endif
-                </div>
-
-                {{-- Image credits --}}
-                <div class="tab-pane fade" id="credits-{{ $image->id }}">
-
+            <div class="tab-pane fade image-info-box" style="max-height: 240px;" id="credit">
                     <div class="row no-gutters mb-2">
                         <div class="col-lg-4 col-4">
                             <h5>Design</h5>
@@ -164,13 +205,12 @@
                         <div class="col-lg-4 col-4">
                             <h5>Art</h5>
                         </div>
-                        <div class="col-lg-8 col-8">
+                        <div class="col-lg-4 col-4">
                             @foreach ($image->artists as $artist)
                                 <div>{!! $artist->displayLink() !!}</div>
                             @endforeach
                         </div>
                     </div>
-                    <div>
                         <strong>Original Design:</strong>
                         <div class="row no-gutters justify-content-center">
                             @php $character->images()->whereHas('artists')->get()->sortBy('id')->first() @endphp
@@ -184,53 +224,31 @@
                             <div class="col-lg-4 col-4">
                                 <strong>Art by:</strong>
                             </div>
-                            <div class="col-lg-8 col-8">
-                                @foreach ($image->artists as $artist)
-                                    <div>{!! $artist->displayLink() !!}</div>
-                                @endforeach
-                            </div>
+                            <div class="col-lg-4 col-4">
+                            @foreach ($image->artists as $artist)
+                                <div>{!! $artist->displayLink() !!}</div>
+                             @endforeach
                         </div>
                     </div>
 
-                    @if (Auth::check() && Auth::user()->hasPower('manage_characters'))
-                        <div class="mt-3">
-                            <a href="#" class="btn btn-outline-info btn-sm edit-credits" data-id="{{ $image->id }}"><i class="fas fa-cog"></i> Edit</a>
-                        </div>
-                    @endif
-                </div>
-
-                @if (isset($showMention) && $showMention)
-                    {{-- Mention This tab --}}
-                    <div class="tab-pane fade" id="mention-{{ $image->id }}">
-                        In the rich text editor:
-                        <div class="alert alert-secondary">
-                            [character={{ $character->slug }}]
-                        </div>
-                        @if (!config('lorekeeper.settings.wysiwyg_comments'))
-                            In a comment:
-                            <div class="alert alert-secondary">
-                                [{{ $character->fullName }}]({{ $character->url }})
-                            </div>
-                        @endif
-                        <hr>
-                        <div class="my-2">
-                            <strong>For Thumbnails:</strong>
-                        </div>
-                        In the rich text editor:
-                        <div class="alert alert-secondary">
-                            [charthumb={{ $character->slug }}]
-                        </div>
-                        @if (!config('lorekeeper.settings.wysiwyg_comments'))
-                            In a comment:
-                            <div class="alert alert-secondary">
-                                [![Thumbnail of {{ $character->fullName }}]({{ $character->image->thumbnailUrl }})]({{ $character->url }})
-                            </div>
-                        @endif
+                @if (Auth::check() && Auth::user()->hasPower('manage_characters'))
+                    <div class="mt-3">
+                        <a href="#" class="btn btn-outline-info btn-sm edit-credits" data-id="{{ $image->id }}"><i class="fas fa-cog"></i> Edit</a>
                     </div>
                 @endif
 
-                @if (Auth::check() && Auth::user()->hasPower('manage_characters'))
-                    <div class="tab-pane fade" id="settings-{{ $image->id }}">
+            </div>
+            @if (Auth::check() && Auth::user()->hasPower('manage_characters'))
+                <div class="tab-pane fade" id="settings-{{ $character->slug }}">
+                    {!! Form::open(['url' => $character->is_myo_slot ? 'admin/myo/' . $character->id . '/settings' : 'admin/character/' . $character->slug . '/settings']) !!}
+                    <div class="form-group">
+                        {!! Form::checkbox('is_visible', 1, $character->is_visible, ['class' => 'form-check-input', 'data-toggle' => 'toggle']) !!}
+                        {!! Form::label('is_visible', 'Is Visible', ['class' => 'form-check-label ml-3']) !!} {!! add_help('Turn this off to hide the character. Only mods with the Manage Masterlist power (that\'s you!) can view it - the owner will also not be able to see the character\'s page.') !!}
+                    </div>
+                    <div class="text-right">
+                        {!! Form::submit('Edit', ['class' => 'btn btn-primary']) !!}
+                    </div>
+                    {!! Form::close() !!}
                         {!! Form::open(['url' => 'admin/character/image/' . $image->id . '/settings']) !!}
                         <div class="form-group">
                             {!! Form::checkbox('is_visible', 1, $image->is_visible, ['class' => 'form-check-input', 'data-toggle' => 'toggle']) !!}
@@ -258,9 +276,16 @@
                                 data-id="{{ $image->id }}">Delete</a>
                         </div>
                     </div>
-                @endif
-            </div>
+                </div>
+            @endif
         </div>
     </div>
 </div>
+</div>
+
 @include('widgets._character_warning_js')
+
+@section('scripts')
+    @parent
+    @include('character._image_js', ['character' => $character])
+@endsection
