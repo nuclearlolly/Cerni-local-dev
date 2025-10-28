@@ -12,14 +12,14 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     @if (Auth::check() && Auth::user()->is_news_unread && Config::get('lorekeeper.extensions.navbar_news_notif'))
-                        <a class="nav-link d-flex text-warning" href="{{ url('news') }}"><strong>News </strong><i class="fas fa-bell fa-shake-icon"></i></a>
+                        <a class="nav-link d-flex text-warning" href="{{ url('news') }}"><strong>News </strong><i class="fas fa-bell fa-shakealert-icon"></i></a>
                     @else
                         <a class="nav-link" href="{{ url('news') }}">News</a>
                     @endif
                 </li>
                 <li class="nav-item">
                     @if (Auth::check() && Auth::user()->is_sales_unread && Config::get('lorekeeper.extensions.navbar_news_notif'))
-                        <a class="nav-link d-flex text-warning" href="{{ url('sales') }}"><strong>Sales </strong><i class="fas fa-bell fa-shake-icon"></i></a>
+                        <a class="nav-link d-flex text-warning" href="{{ url('sales') }}"><strong>Sales </strong><i class="fas fa-bell fa-shakealert-icon"></i></a>
                     @else
                         <a class="nav-link" href="{{ url('sales') }}">Sales</a>
                     @endif
@@ -27,7 +27,7 @@
                 <li class="nav-item">
                         @if (Auth::check() && Auth::user()->is_raffles_unread && config('lorekeeper.extensions.navbar_news_notif'))
                             <a class="nav-link d-flex text-warning" href="{{ url('raffles') }}">
-                                Raffles <i class="fas fa-bell fa-shake-icon"></i>
+                                Raffles <i class="fas fa-bell fa-shakealert-icon"></i>
                             </a>
                         @else
                             <a class="nav-link" href="{{ url('raffles') }}">
@@ -156,8 +156,8 @@
                       <h6 class="font-weight-bold text-uppercase text-center">My Characters</h6>
                       <div class="dropdown-divider"></div>
                       <ul class="list-unstyled">
-                        <a class="dropdown-item" a href="{{ Auth::user()->url . '/characters' }}"><i class="fas fa-star"></i> Characters</a>
-                        <a class="dropdown-item" a href="{{ Auth::user()->url . '/myos' }}"><i class="fas fa-heart"></i> MYO Slots</a>
+                        <a class="dropdown-item" a href="{{ url('characters') }}"><i class="fas fa-star"></i> Characters</a>
+                        <a class="dropdown-item" a href="{{ url('characters/myos') }}"><i class="fas fa-heart"></i> MYO Slots</a>
                         <a class="dropdown-item" a href="{{ url('') }}"> <i class="fas fa-cat"></i> Pets</a>
                         <a class="dropdown-item" a href="{{ url('characters/transfers/incoming') }}"><i class="fas fa-arrow-right"></i> Transfers</a>
                       </ul>
@@ -168,8 +168,8 @@
                       <ul class="list-unstyled">
                         <a class="dropdown-item" a href="{{ url('account/bookmarks') }}"><i class="fas fa-bookmark"></i> Bookmarks</a>
                         <a class="dropdown-item" a href="{{ Auth::user()->url . '/character-designs' }}"><i class="fas fa-palette"></i> Designs</a>
-                        <a class="dropdown-item" a href="{{ Auth::user()->url . '/inventory' }}"><i class="fas fa-box"></i> Inventory</a>
-                        <a class="dropdown-item" a href="{{ Auth::user()->url . '/bank' }}"><i class="fas fa-wallet"></i> Bank</a>
+                        <a class="dropdown-item" a href="{{ url('inventory') }}"><i class="fas fa-box"></i> Inventory</a>
+                        <a class="dropdown-item" a href="{{ url('bank') }}"><i class="fas fa-wallet"></i> Bank</a>
                       </ul>
                     </div>
                     <div class="col-sm-3">
