@@ -35,22 +35,6 @@
             </div>
             </div>
         @endif
-        <script>
-var coll = document.getElementsByClassName("collapsible");
-var i;
-
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.maxHeight){
-      content.style.maxHeight = null;
-    } else {
-      content.style.maxHeight = content.scrollHeight + "px";
-    } 
-  });
-}
-</script>
 
     {{-- Info --}}
     <div class="row">
@@ -268,7 +252,6 @@ for (i = 0; i < coll.length; i++) {
                             {!! Form::submit('Edit', ['class' => 'btn btn-primary']) !!}
                         </div>
                         {!! Form::close() !!}
-                        <hr />
                         <div class="text-right">
                             @if ($character->character_image_id != $image->id)
                                 <a href="#" class="btn btn-outline-info btn-sm active-image" data-id="{{ $image->id }}">Set Active</a>
@@ -288,4 +271,20 @@ for (i = 0; i < coll.length; i++) {
 @section('scripts')
     @parent
     @include('character._image_js', ['character' => $character])
+            <script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
+</script>
 @endsection

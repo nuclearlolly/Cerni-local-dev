@@ -12,27 +12,18 @@
  {!! breadcrumbs(['Archives' => 'Archives']) !!}
     <h1>Archives</h1>
     <div class="col-md-12">
-    <table class="wsite-multicol-table" style="border-collapse: collapse; margin-left: auto; margin-right: auto;" border="0" cellspacing="10" cellpadding="0">
-        <tbody class="wsite-multicol-tbody">
-            <tr style="height: 10px;">
-                <td style="height: 10px; width: 190.8px;">
-                    <h5><img class="img-thumbnail" style="display: block; margin-left: auto; margin-right: auto;" src="http://localhost/images/characters/0/1_oQkJVhjdCW_th.png" /></h5>
-                </td>
-                <td style="height: 10px; width: 8.9875px;"> </td>
-                <td style="width: 650.412px;">
-                    <div class="paragraph">
-                        <div class="paragraph">
-                            <div class="card">
-                                <div class="card-body">
-                                    <p style="text-align: left;">"Welcome to the Archives, I am<strong> Noel</strong>. All of your questions surrounding our world can be answered here- or well, the ones we know the answer to... If you need any help, don't hesitate to tell me, just be mindful of others."</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+        <div class="row justify-content-center">
+    <div class="col-md-3 text-center">
+        <a href="http://localhost/character/NPC-003"><img class="img-thumbnail" src="http://localhost/images/characters/0/1_oQkJVhjdCW_th.png" style="height: 190px; width: 190px;"></a>
+    </div>
+    <div class="col-md-8">
+            <hr>
+        <div class="card">
+            <div class="card-body">
+                <p style="text-align: left;">"Welcome to the Archives, I am<strong> Noel</strong>. All of your questions surrounding our world can be answered here- or well, the ones we know the answer to... If you need any help, don't hesitate to tell me, just be mindful of others."</p>
+            </div>
+        </div>
+    </div>
 </div>
 <hr>
     <div class="card mb-2 text-center">

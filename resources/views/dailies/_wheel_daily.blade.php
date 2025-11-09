@@ -10,7 +10,7 @@
 
 <div class="text-{{ $wheel->alignment }}" style="background-size:cover; background-image:url('{{$wheel->backgroundUrl}}');">
     <div class="row justify-content-center {{ $wheel->marginAlignment() }}" style="width:{{ $wheel->size }}px;height:50px;">
-        <img src="{{ $wheel->stopperUrl }}" style="max-height:50px;">
+        <img src="{{ $wheel->stopperUrl }}" style="max-height:120px;">
     </div>
     <div id="#canvas-container" class="w-100 {{ $wheel->marginAlignment() }}" style="max-width:{{ $wheel->size }}px;max-height:{{ $wheel->size}}px;">
         <canvas class="@if($isDisabled) disabled @endif" id='canvas' width="{{ $wheel->size }}" height="{{ $wheel->size }}" 
@@ -19,9 +19,11 @@
         </canvas>
     </div>
 </div>
-
-<div class="text-center">
-    <p>{!! $daily->parsed_description !!}</p>
+<hr>
+<div class="card">
+<div class="card-body">
+<p style="text-align:center;">Welcome to the Wheel of Fortune! Here you can try your luck once a week. To claim a reward click on the wheel</p>
+</div>
 </div>
 
 @if(Auth::user())
@@ -176,4 +178,15 @@
         window.location.reload();
     }
 </script>
+<style>
+img {
+    transition: 0.3s 
+ease-in-out;
+    transform: scale(1, 1);
+}
+
+img:hover {
+    transform: scale(1.03, 1.03);
+}
+</style>
 @endsection
