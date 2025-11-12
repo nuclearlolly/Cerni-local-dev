@@ -273,10 +273,10 @@
         <div class="card-header">
             <ul class="nav nav-tabs card-header-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" id="petsTab" data-toggle="tab" href="#pets" role="tab">Pets</a>
+                    <a class="nav-link active" id="petsTab" data-toggle="tab" href="#pets" role="tab"><i class="fas fa-paw"></i> Pets</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="awardsTab" data-toggle="tab" href="#awards" role="tab">Awards</a>
+                    <a class="nav-link" id="awardsTab" data-toggle="tab" href="#awards" role="tab"><i class="fas fa-award"></i> Awards</a>
                 </li>
             </ul>
         </div>
