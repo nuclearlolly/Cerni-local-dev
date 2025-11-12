@@ -31,13 +31,14 @@
 <h5>
     <i class="text-{{ $character->is_sellable ? 'success far fa-circle' : 'danger fas fa-times' }} fa-fw mr-2"></i> {{ $character->is_sellable ? 'Can' : 'Cannot' }} be sold
 </h5>
+<hr />
 @if ($character->sale_value > 0)
     <div class="row no-gutters">
         <div class="col-lg-3 col-5">
             <h5>Sale Value</h5>
         </div>
-        <div class="col-lg-9 col-7 pl-1">
-            {{ config('lorekeeper.settings.currency_symbol') }}{{ $character->sale_value }}
+        <div class="col-lg-9 col-7 pl-5">
+            <strong>{{ config('lorekeeper.settings.currency_symbol') }}{{ $character->sale_value }}</strong>
         </div>
     </div>
 @endif
@@ -46,7 +47,7 @@
         <div class="col-lg-3 col-5">
             <h5>Cooldown</h5>
         </div>
-        <div class="col-lg-9 col-7 pl-1">Cannot be transferred until {!! format_date($character->transferrable_at) !!}</div>
+        <div class="col-lg-9 col-7 pl-5">Cannot be transferred until {!! format_date($character->transferrable_at) !!}</div>
     </div>
 @endif
 @if (Auth::check() && Auth::user()->hasPower('manage_characters'))

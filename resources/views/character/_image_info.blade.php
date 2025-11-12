@@ -115,7 +115,7 @@
                                 <div class="col-lg-3 col-5">{!! $image->rarity_id ? $image->rarity->displayName : 'None' !!}</div>
                             </div>
 
-                            <div class="mb-3 image-info-box" style="max-height: 102px;">
+                            <div class="mb-3 image-info-box" style="max-height: 204px;">
                                 <div>
                                     <h5>Traits</h5>
                                 </div>
@@ -176,7 +176,7 @@
                         </div>
                     @endif
                 </div>
-            <div class="tab-pane fade image-info-box" style="max-height: 240px;" id="credit">
+            <div class="tab-pane fade" id="credit">
                     <div class="row no-gutters mb-2">
                         <div class="col-lg-4 col-4">
                             <h5>Design</h5>
@@ -195,6 +195,7 @@
                             @endforeach
                         </div>
                     </div>
+                    <div class="mb-3 image-info-box" style="max-height: 229px;">
                         <strong>Original Design:</strong>
                         <div class="row no-gutters justify-content-center">
                             @php $character->images()->whereHas('artists')->get()->sortBy('id')->first() @endphp
@@ -213,6 +214,7 @@
                                 <div>{!! $artist->displayLink() !!}</div>
                              @endforeach
                         </div>
+                    </div>
                     </div>
 
                 @if (Auth::check() && Auth::user()->hasPower('manage_characters'))
@@ -265,6 +267,29 @@
     </div>
 </div>
 </div>
+    {{-- Info --}}
+        <div class="card mb-4">
+    <div class="card character-bio">
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" id="petsTab" data-toggle="tab" href="#pets" role="tab">Pets</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="awardsTab" data-toggle="tab" href="#awards" role="tab">Awards</a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body tab-content">
+            <div class="tab-pane fade show active" id="pets">
+                PETS INFO WILL GO HERE
+            </div>
+            <div class="tab-pane fade" id="awards">
+                AWARDS INFO WILL GO HERE
+            </div>
+        </div> 
+    </div>
+
 
 @include('widgets._character_warning_js')
 
