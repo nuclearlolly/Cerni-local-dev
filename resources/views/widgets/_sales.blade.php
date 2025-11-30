@@ -10,18 +10,15 @@
                     @if($sales->characters->count())
                         <div class="card-body text-center">
                             <a href="{{ $sales->url }}">
-                                <img src="{{ $sales->characters->first()->character->image->thumbnailUrl }}" alt="{!! $sales->characters->first()->character->fullName !!}" class="img-thumbnail" height="200" width="200"/>
+                                <img src="{{ $sales->characters->random()->character->image->thumbnailUrl }}" alt="{!! $sales->characters->random()->character->fullName !!}" class="img-thumbnail" height="200" width="200"/>
                             </a>
                         </div>
                     @endif
                 
                     <div class="row {{ $sales->characters->count() ? 'col-md-9' : 'col-12' }} d-flex flex-column justify-content-center">
                         <span class="d-flex flex-column">
-                                    <h4 class="mb-0">{!! $sales->displayName !!}</h4> 
-                                    @if($sales->characters->count())
-                        @else
-                            <p class="pl-2 mb-0">{!! substr(strip_tags(str_replace("<br />", "&nbsp;", $sales->parsed_text)), 0, 300) !!}... <a href="{!! $sales->url !!}">View sale <i class="fas fa-arrow-right"></i></a></p>
-                        @endif
+                            <h4 class="mb-0">{!! $sales->displayName !!}</h4> 
+                            <a href="{!! $sales->url !!}">View Sale...</a>
                     </div>
                 </div>
             @endforeach
@@ -32,3 +29,27 @@
         @endif
     </div>
 </div>
+<script>
+    // Make an array of thumbnails + names
+    const characters = @json(
+        $sales->characters->map(function($c) {
+            return [
+                'img'  => $c->character->image->thumbnailUrl,
+                'name' => $c->character->fullName,
+            ];
+        })
+    );
+    function randomCharacter() {
+        const item = characters[Math.floor(Math.random() * characters.length)];
+        const img = document.getElementById('randomCharacter');
+
+        img.src = item.img;
+        img.alt = item.name;
+    }
+
+    // First change after page load
+    randomCharacter();
+
+    // Change every 15 seconds (15000 ms)
+    setInterval(randomCharacter, 10000);
+</script>
