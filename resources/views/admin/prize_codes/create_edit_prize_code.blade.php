@@ -8,9 +8,7 @@
     {!! breadcrumbs([
         'Admin Panel' => 'admin',
         'Prizes' => 'admin/prizecodes/',
-        ($prize->id ? 'Edit' : 'Create') . ' Prize' => $prize->id
-            ? 'admin/prizecodes/edit/' . $prize->id
-            : 'admin/prizecodes/create',
+        ($prize->id ? 'Edit' : 'Create') . ' Prize' => $prize->id ? 'admin/prizecodes/edit/' . $prize->id : 'admin/prizecodes/create',
     ]) !!}
 
     <h1>{{ $prize->id ? 'Edit' : 'Create' }} Prize
@@ -79,9 +77,7 @@
                     'class' => 'form-check-input',
                     'data-toggle' => 'toggle',
                 ]) !!}
-                {!! Form::label('is_active', 'Is Active', ['class' => 'form-check-label ml-3']) !!} {!! add_help(
-                    'Codes that are not active will not be redeemable. The start/end time hide settings override this setting, i.e. if this is set to active, it will still be unredeemable outside of the start/end times.',
-                ) !!}
+                {!! Form::label('is_active', 'Is Active', ['class' => 'form-check-label ml-3']) !!} {!! add_help('Codes that are not active will not be redeemable. The start/end time hide settings override this setting, i.e. if this is set to active, it will still be unredeemable outside of the start/end times.') !!}
             </div>
         </div>
     </div>

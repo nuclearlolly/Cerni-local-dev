@@ -2,9 +2,9 @@
 
 @section('admin-title') Page Categories @endsection
 
-@if(!count($sections))
+@if (!count($sections))
     <p>No sections found.</p>
-@else 
+@else
     <table class="table table-sm category-table">
         <thead>
             <tr>
@@ -14,7 +14,7 @@
             </tr>
         </thead>
         <tbody id="sortable" class="sortable">
-            @foreach($sections as $section)
+            @foreach ($sections as $section)
                 <tr class="sort-item" data-id="{{ $section->id }}">
                     <td>
                         <a class="fas fa-arrows-alt-v handle mr-3" href="#"></a>
@@ -22,7 +22,7 @@
                     </td>
                     <td>{!! $section->key !!}</td>
                     <td class="text-right">
-                        <a href="{{ url('admin/page-sections/edit/'.$section->id) }}" class="btn btn-primary">Edit</a>
+                        <a href="{{ url('admin/page-sections/edit/' . $section->id) }}" class="btn btn-primary">Edit</a>
                     </td>
                 </tr>
             @endforeach
@@ -41,23 +41,26 @@
 @section('scripts')
 @parent
 <script>
-
-$( document ).ready(function() {
-    $('.handle').on('click', function(e) {
-        e.preventDefault();
+    $(document).ready(function() {
+        $('.handle').on('click', function(e) {
+            e.preventDefault();
+        });
+        $("#sortable").sortable({
+            items: '.sort-item',
+            handle: ".handle",
+            placeholder: "sortable-placeholder",
+            stop: function(event, ui) {
+                $('#sortableOrder').val($(this).sortable("toArray", {
+                    attribute: "data-id"
+                }));
+            },
+            create: function() {
+                $('#sortableOrder').val($(this).sortable("toArray", {
+                    attribute: "data-id"
+                }));
+            }
+        });
+        $("#sortable").disableSelection();
     });
-    $( "#sortable" ).sortable({
-        items: '.sort-item',
-        handle: ".handle",
-        placeholder: "sortable-placeholder",
-        stop: function( event, ui ) {
-            $('#sortableOrder').val($(this).sortable("toArray", {attribute:"data-id"}));
-        },
-        create: function() {
-            $('#sortableOrder').val($(this).sortable("toArray", {attribute:"data-id"}));
-        }
-    });
-    $( "#sortable" ).disableSelection();
-});
 </script>
 @endsection

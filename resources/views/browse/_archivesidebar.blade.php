@@ -2,8 +2,8 @@
     <li class="sidebar-header">
         <a href="{{ url('faq') }}" class="card-link">Archives</a>
     </li>
-        </li>
-        <li class="sidebar-section">
+    </li>
+    <li class="sidebar-section">
         <div class="sidebar-section-header">History Nonfiction</div>
         <div class="sidebar-item"><a href="http://localhost/info/Creationpage1">Founding</a></div>
     </li>

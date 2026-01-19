@@ -4,20 +4,20 @@
     </div>
 
     <div class="card-body pt-0">
-        @if($saleses->count())
-            @foreach($saleses as $sales)
+        @if ($saleses->count())
+            @foreach ($saleses as $sales)
                 <div class="row justify-content-center">
-                    @if($sales->characters->count())
+                    @if ($sales->characters->count())
                         <div class="card-body text-center">
                             <a href="{{ $sales->url }}">
-                                <img src="{{ $sales->characters->random()->character->image->thumbnailUrl }}" alt="{!! $sales->characters->random()->character->fullName !!}" class="img-thumbnail" height="200" width="200"/>
+                                <img src="{{ $sales->characters->random()->character->image->thumbnailUrl }}" alt="{!! $sales->characters->random()->character->fullName !!}" class="img-thumbnail" height="200" width="200" />
                             </a>
                         </div>
                     @endif
-                
+
                     <div class="row {{ $sales->characters->count() ? 'col-md-9' : 'col-12' }} d-flex flex-column justify-content-center">
                         <span class="d-flex flex-column">
-                            <h4 class="mb-0">{!! $sales->displayName !!}</h4> 
+                            <h4 class="mb-0">{!! $sales->displayName !!}</h4>
                             <a href="{!! $sales->url !!}">View Sale...</a>
                     </div>
                 </div>

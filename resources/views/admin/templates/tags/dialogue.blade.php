@@ -31,17 +31,17 @@
         </tr>
     </thead>
     <tbody id="characterTableBody">
-        @if(isset($template->data['character_name']))
-            @foreach($template->data['character_name'] as $name)
-                @if($name != null)
-                <tr class="character-row">
-                    <td>{!! Form::text('data[character_name][]', $name, ['class' => 'form-control']) !!}</td>
-                    <td>{!! Form::text('data[character_default][]', $template->data['character_default'][$loop->index] ?? '', ['class' => 'form-control']) !!}</td>
-                    <td>{!! Form::text('data[character_emotion_1][]',  $template->data['character_emotion_1'][$loop->index] ?? '', ['class' => 'form-control']) !!}</td>
-                    <td>{!! Form::text('data[character_emotion_2][]',  $template->data['character_emotion_2'][$loop->index] ?? '', ['class' => 'form-control']) !!}</td>
-                    <td>{!! Form::text('data[character_emotion_3][]',  $template->data['character_emotion_3'][$loop->index] ?? '', ['class' => 'form-control']) !!}</td>
-                    <td class="text-right"><a href="#" class="btn btn-danger remove-character-button">Remove</a></td>
-                </tr>
+        @if (isset($template->data['character_name']))
+            @foreach ($template->data['character_name'] as $name)
+                @if ($name != null)
+                    <tr class="character-row">
+                        <td>{!! Form::text('data[character_name][]', $name, ['class' => 'form-control']) !!}</td>
+                        <td>{!! Form::text('data[character_default][]', $template->data['character_default'][$loop->index] ?? '', ['class' => 'form-control']) !!}</td>
+                        <td>{!! Form::text('data[character_emotion_1][]', $template->data['character_emotion_1'][$loop->index] ?? '', ['class' => 'form-control']) !!}</td>
+                        <td>{!! Form::text('data[character_emotion_2][]', $template->data['character_emotion_2'][$loop->index] ?? '', ['class' => 'form-control']) !!}</td>
+                        <td>{!! Form::text('data[character_emotion_3][]', $template->data['character_emotion_3'][$loop->index] ?? '', ['class' => 'form-control']) !!}</td>
+                        <td class="text-right"><a href="#" class="btn btn-danger remove-character-button">Remove</a></td>
+                    </tr>
                 @endif
             @endforeach
         @endif
@@ -55,11 +55,11 @@
     <table class="table table-sm">
         <tbody id="characterRow">
             <tr class="character-row">
-            <td>{!! Form::text('data[character_name][]', '', ['class' => 'form-control']) !!}</td>
-                    <td>{!! Form::text('data[character_default][]', '', ['class' => 'form-control']) !!}</td>
-                    <td>{!! Form::text('data[character_emotion_1][]', '', ['class' => 'form-control']) !!}</td>
-                    <td>{!! Form::text('data[character_emotion_2][]', '', ['class' => 'form-control']) !!}</td>
-                    <td>{!! Form::text('data[character_emotion_3][]', '', ['class' => 'form-control']) !!}</td>
+                <td>{!! Form::text('data[character_name][]', '', ['class' => 'form-control']) !!}</td>
+                <td>{!! Form::text('data[character_default][]', '', ['class' => 'form-control']) !!}</td>
+                <td>{!! Form::text('data[character_emotion_1][]', '', ['class' => 'form-control']) !!}</td>
+                <td>{!! Form::text('data[character_emotion_2][]', '', ['class' => 'form-control']) !!}</td>
+                <td>{!! Form::text('data[character_emotion_3][]', '', ['class' => 'form-control']) !!}</td>
                 <td class="text-right"><a href="#" class="btn btn-danger remove-character-button">Remove</a></td>
             </tr>
         </tbody>
@@ -67,7 +67,7 @@
 </div>
 
 <h5>Dialogue</h5>
-<p>Sets up the actual dialogue. Make sure that the character names match the names above if you intend to use images. 
+<p>Sets up the actual dialogue. Make sure that the character names match the names above if you intend to use images.
     You can specify which character image should go with the text, for such things as different expressions.</p>
 
 
@@ -80,8 +80,8 @@
         </tr>
     </thead>
     <tbody id="dialogueTableBody">
-        @if(isset($template->data['dialogue_name']))
-            @foreach($template->data['dialogue_name'] as $dialogue)
+        @if (isset($template->data['dialogue_name']))
+            @foreach ($template->data['dialogue_name'] as $dialogue)
                 <tr class="dialogue-row">
                     <td>{!! Form::text('data[dialogue_name][]', $dialogue, ['class' => 'form-control']) !!}</td>
                     <td>{!! Form::text('data[image_number][]', $template->data['image_number'][$loop->index] ?? '', ['class' => 'form-control']) !!}</td>
@@ -111,38 +111,37 @@
 
 
 <script>
-$( document ).ready(function() {    
-    var $characterTable  = $('#characterTableBody');
-    var $characterRow = $('#characterRow').find('.character-row');
-    var $dialogueTable  = $('#dialogueTableBody');
-    var $dialogueRow = $('#dialogueRow').find('.dialogue-row');
+    $(document).ready(function() {
+        var $characterTable = $('#characterTableBody');
+        var $characterRow = $('#characterRow').find('.character-row');
+        var $dialogueTable = $('#dialogueTableBody');
+        var $dialogueRow = $('#dialogueRow').find('.dialogue-row');
 
-    $('#characterTableBody .selectize').selectize();
-    attachRemoveListener($('#characterTableBody .remove-character-button'));
-    $('#dialogueTableBody .selectize').selectize();
-    attachRemoveListener($('#dialogueTableBody .remove-dialogue-button'));
-    
-    $('#addCharacter').on('click', function(e) {
-        e.preventDefault();
-        var $clone = $characterRow.clone();
-        $characterTable.append($clone);
-        attachRemoveListener($clone.find('.remove-character-button'));
-    });
+        $('#characterTableBody .selectize').selectize();
+        attachRemoveListener($('#characterTableBody .remove-character-button'));
+        $('#dialogueTableBody .selectize').selectize();
+        attachRemoveListener($('#dialogueTableBody .remove-dialogue-button'));
 
-    $('#addDialogue').on('click', function(e) {
-        e.preventDefault();
-        var $clone = $dialogueRow.clone();
-        $dialogueTable.append($clone);
-        attachRemoveListener($clone.find('.remove-dialogue-button'));
-    });
-
-    function attachRemoveListener(node) {
-        node.on('click', function(e) {
+        $('#addCharacter').on('click', function(e) {
             e.preventDefault();
-            $(this).parent().parent().remove();
+            var $clone = $characterRow.clone();
+            $characterTable.append($clone);
+            attachRemoveListener($clone.find('.remove-character-button'));
         });
-    }
 
-});
-    
+        $('#addDialogue').on('click', function(e) {
+            e.preventDefault();
+            var $clone = $dialogueRow.clone();
+            $dialogueTable.append($clone);
+            attachRemoveListener($clone.find('.remove-dialogue-button'));
+        });
+
+        function attachRemoveListener(node) {
+            node.on('click', function(e) {
+                e.preventDefault();
+                $(this).parent().parent().remove();
+            });
+        }
+
+    });
 </script>

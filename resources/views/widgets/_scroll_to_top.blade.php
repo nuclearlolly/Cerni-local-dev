@@ -24,12 +24,12 @@
 </script>
 <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
 <script>
-  kofiWidgetOverlay.draw('cerni', {
-    'type': 'floating-chat',
-    'floating-chat.donateButton.text': 'Support Cerni',
-    'floating-chat.donateButton.background-color': '#ca4dff79', 
-    'floating-chat.donateButton.text-color': '#fef5ffff'
-  });
+    kofiWidgetOverlay.draw('cerni', {
+        'type': 'floating-chat',
+        'floating-chat.donateButton.text': 'Support Cerni',
+        'floating-chat.donateButton.background-color': '#ca4dff79',
+        'floating-chat.donateButton.text-color': '#fef5ffff'
+    });
 </script>
 
 <style>
@@ -54,7 +54,7 @@
         transition: all 0.5s ease;
     }
 
-.floating-chat-kofi-popup-iframe {
-    box-shadow: 0 8px 30px 10px rgb(96 46 123 / 25%), 0 2px 10px rgb(86 0 255 / 30%) !important;
-}
+    .floating-chat-kofi-popup-iframe {
+        box-shadow: 0 8px 30px 10px rgb(96 46 123 / 25%), 0 2px 10px rgb(86 0 255 / 30%) !important;
+    }
 </style>

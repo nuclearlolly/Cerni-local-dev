@@ -98,11 +98,11 @@
         {!! Form::close() !!}
     </div>
 
-@if(Auth::user()->isStaff)
-    @include('widgets._staff_profile_form', ['user' => Auth::user(), 'adminView' => 0])
-@endif
+    @if (Auth::user()->isStaff)
+        @include('widgets._staff_profile_form', ['user' => Auth::user(), 'adminView' => 0])
+    @endif
 
-<div class="card p-3 mb-2">
+    <div class="card p-3 mb-2">
         <h3>Dashboard Guide Visibility</h3>
         {!! Form::open(['url' => 'account/guide']) !!}
         <div class="form-group row">
@@ -307,8 +307,8 @@
 @endsection
 
 @section('scripts')
-@parent
-    @if(Auth::user()->isStaff)
+    @parent
+    @if (Auth::user()->isStaff)
         @include('js._website_links_js')
     @endif
 @endsection

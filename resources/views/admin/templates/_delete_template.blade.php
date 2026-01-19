@@ -1,5 +1,5 @@
-@if($template)
-    {!! Form::open(['url' => 'admin/templates/delete/'.$template->id]) !!}
+@if ($template)
+    {!! Form::open(['url' => 'admin/templates/delete/' . $template->id]) !!}
 
     <p>You are about to delete the template <strong>{{ $template->name }}</strong>. This is not reversible.</p>
     <p>Are you sure you want to delete <strong>{{ $template->name }}</strong>?</p>
@@ -9,6 +9,6 @@
     </div>
 
     {!! Form::close() !!}
-@else 
+@else
     Invalid template selected.
 @endif

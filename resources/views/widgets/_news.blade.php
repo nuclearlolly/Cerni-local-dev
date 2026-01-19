@@ -7,20 +7,20 @@
         @if ($newses->count())
             @foreach ($newses as $news)
                 <div class="row justify-content-center">
-                <div class="card-body text-center">
+                    <div class="card-body text-center">
                         <h5 class="mb-0">
                             {!! $news->displayName !!}
                         </h5>
                         <span class="mb-0 small">
                             {!! $news->post_at ? pretty_date($news->post_at) : pretty_date($news->created_at) !!}
-                    </span>
-                    @if ($textPreview)
-                        <p class="mb-0">
-                            {!! substr(strip_tags(str_replace('<br />', '&nbsp;', $news->parsed_text)), 0, 200) !!}...
-                            <a href="{!! $news->url !!}">Read more...</a>
-                        </p>
-                    @endif
-                </div>
+                        </span>
+                        @if ($textPreview)
+                            <p class="mb-0">
+                                {!! substr(strip_tags(str_replace('<br />', '&nbsp;', $news->parsed_text)), 0, 200) !!}...
+                                <a href="{!! $news->url !!}">Read more...</a>
+                            </p>
+                        @endif
+                    </div>
             @endforeach
         @else
             <div class="text-center pt-3">
