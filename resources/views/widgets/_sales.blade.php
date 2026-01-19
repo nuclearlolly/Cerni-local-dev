@@ -29,27 +29,3 @@
         @endif
     </div>
 </div>
-<script>
-    // Make an array of thumbnails + names
-    const characters = @json(
-        $sales->characters->map(function($c) {
-            return [
-                'img'  => $c->character->image->thumbnailUrl,
-                'name' => $c->character->fullName,
-            ];
-        })
-    );
-    function randomCharacter() {
-        const item = characters[Math.floor(Math.random() * characters.length)];
-        const img = document.getElementById('randomCharacter');
-
-        img.src = item.img;
-        img.alt = item.name;
-    }
-
-    // First change after page load
-    randomCharacter();
-
-    // Change every 15 seconds (15000 ms)
-    setInterval(randomCharacter, 10000);
-</script>
